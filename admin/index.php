@@ -1,3 +1,9 @@
+<?php 
+session_start();
+
+include('config/authentication.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,21 +13,25 @@
         <title>Blue Thunder</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="assets/css/Bootstrap.css" rel="stylesheet" />
-        
+        <link rel="icon" href="images/icon.png">
     </head>
     <body class="sb-nav-fixed">
         <!-- TOP NAVBAR -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bgblue">
-            <img src="B_logo.png" class="mx-7" width="80px">
+            <img src="images/B_logo.png" class="mx-7" width="80px">
             
                 <button class=" btn btn-link btn-sm fs-4" id="sidebarToggle" align="right"><i class="fas fa-bars"></i></button>
             <ul class="navbar-nav ms-auto ms-md-auto me-5 me-lg-4">
                 <li class="nav-item dropdown d-md-inline-block ms-auto">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw fs-5"></i> username </a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"><i class="fas fa-user fa-fw fs-5"></i> 
+                    <?php echo $_SESSION['user']; ?> 
+                    </a>
+
+
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Account</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="config/logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>

@@ -5,9 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Blue Thunder</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
         <link href="assets/css/Bootstrap.css" rel="stylesheet" />
-        
+        <link rel="stylesheet" href="dash.css">        
     </head>
     <body class="sb-nav-fixed">
         <!-- TOP NAVBAR -->
@@ -62,18 +62,114 @@
             </div>
             <!-- END_SIDE BAR -->
 
+
+
+
             <!-- PAGE CONTENT -->
             <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-3">
-                        <h2 class="my-4">Users</h2>
-                        <!-- SALES CONTENT -->
-                        
+                <section class="content  text-dark">
+                    <div class="container-fluid">
+                      <div class="card card-outline card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">List of Clients</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="container-fluid">
+                                <div id="list_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                    <!--SEARCH TOOL-->
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6">
+                                            <div class="">
+                                                <label class="search-label">Search:</label>
+                                                <input class="search-tool form-control-sm">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--END_SEARCH TOOL-->
 
+                                    <!-- DATATABLE CONTENT-->
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table class="table table-hover table-striped dataTable no-footer" >
+                                            <!-- COLUMN TITLES-->
+                                                <thead>
+                                                    <tr role="row">
+                                                        <th class="text-center py-1 px-2" style="width: 5%;">#</th>
+                                                        <th class="py-1 px-2" style="width: 10%;">Lastname</th>
+                                                        <th class="py-1 px-2" style="width: 10%;">Firstname</th>
+                                                        <th class="py-1 px-2" style="width: 10%;">Username</th>
+                                                        <th class="py-1 px-2" style="width: 15%;">Email</th>
+                                                        <th class="py-1 px-2 text-center" style="width: 15%;">Option</th>
+                                                        
+                                                        
+                                                    </tr>
+                                                </thead>
+                                                <!-- END_COLUMN TITLES-->
 
-                        <!-- END_SALES CONTENT -->
+                                                <!-- USERS RECORD-->
+                                                <tbody>
+                                                    <tr class="odd">
+                                                        <td class="text-center py-3 px-2">1</td>
+                                                        <td class="py-3 px-2 data">Marquez</td>
+                                                        <td class="py-3 px-2">Ron</td>
+                                                        <td class="py-3 px-2">ronmrqz</td>
+                                                        <td class="py-3 px-2">ron@gmail.com</td>
+                                                        <td class="" align="center" >
+                                                                <a class="nav-link dropdown-toggle " id="navbarDropdown action-b" href="#" role="button" data-bs-toggle="dropdown"> Action </a>
+                                                                <ul class="dropdown-menu dropdown-menu-end">
+                                                                    <li><a class="dropdown-item" href="#!"> <span class="fa fa-edit text-primary"></span> Edit</a></li>
+                                                                    <li><hr class="dropdown-divider" /></li>
+                                                                    <li><a class="dropdown-item" href="#!"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
+                                                                </ul>
+                                                       </td>
+                                                        
+                                                        
+                                                    </tr>  
+                                                    <tr class="even">
+                                                        <td class=" text-center py-3 px-2">1</td>
+                                                        <td class="py-3 px-2">Marquez</td>
+                                                        <td class="py-3 px-2">Ron</td>
+                                                        <td class="py-3 px-2">ronmrqz</td>
+                                                        <td class="py-3 px-2">ron@gmail.com</td>
+                                                        <td class="" align="center" >
+                                                            <a class="nav-link dropdown-toggle " id="navbarDropdown action-b" href="#" role="button" data-bs-toggle="dropdown"> Action </a>
+                                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                                <li><a class="dropdown-item" href="#!"> <span class="fa fa-edit text-primary"></span> Edit</a></li>
+                                                                <li><hr class="dropdown-divider" /></li>
+                                                                <li><a class="dropdown-item" href="#!"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
+                                                            </ul>
+                                                   </td>
+                                                    </tr>  
+                                                </tbody>
+                                                <!-- END_USERS RECORD-->
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!-- END_DATATABLE CONTENT-->
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-7 mt-3">
+                                            <div class="" id="list_paginate">
+                                                <ul class="pagination">
+                                                    <li style="width: 100px; text-align:center;">
+                                                        <a href="#" class="page-link">Previous</a>
+                                                    </li>
+                                                    <li class="active">
+                                                        <a href="#" class="page-link">1</a>
+                                                    </li>
+                                                    <li style="width: 100px; text-align:center;">
+                                                        <a href="#" class="page-link">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                </main>
+                </section>
             </div>
             <!-- END_PAGE CONTENT -->
 

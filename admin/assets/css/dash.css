@@ -1,0 +1,60 @@
+.content{
+    padding-top: 20px;
+}
+.card-header{
+    position: relative;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    background-color: whitesmoke;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.75rem 1.25rem;
+}
+.card-tool{
+    float: right;
+}
+.btnb{
+    background-color: rgb(2, 127, 252);
+    color: white;
+    transform: 0.2s;
+}
+.btnb:hover{
+    background-color: rgb(51, 153, 255);
+    color: white;
+    box-shadow: 1px 1px 1px black;
+}
+.card-title{
+    display: inline-block;
+    vertical-align: middle;
+}
+.card-header > .card-tools {
+    float: right;
+    margin-right: -0.625rem;
+}
+.search-tool{
+    display: inline-block;
+    border: 1px solid #ced4da;
+    color: #495057;
+}
+.search-label{
+    display: inline-block;
+ 
+}
+.col-sm-12{
+    position: relative;
+    width: 100%;
+    padding: 7.5px 0px;
+}
+.size0{
+    width: 60px;
+}
+.size1{
+    width: 140px;
+}
+.size2{
+    width: 160px;
+}
+.size3{
+    width: 180px;
+    
+}
+
