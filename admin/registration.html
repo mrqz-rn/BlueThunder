@@ -11,7 +11,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="assets/css/stylez.css">
+    <link rel="stylesheet" href="sample_loginpage/stylez.css">
     <title>Registration Page Blue Thunder</title>
 </head>
 
@@ -19,119 +19,108 @@
 
     <div class="parent clearfix">
         <div class="bg-illustration">
-            <img src="images/B_logo.png" alt="logo">
+            <img src="admin/images/B_logo.png" alt="logo">
+            <div class="centered"> 
+                <h3 class="caption">Forever</h3>
+                <h3 class="caption">true to the</h3>
+                <h3 class="caption">Gold and Blue</h3>
+            </div>
+
+
             <!---- <p>Forever  <br>
                 true to the  <br>
                 Gold and Blue   </p>-->
 
-
-            <div class="burger-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
         </div>
 
         <div class="login">
-            <div class="container">
-                <h1>CREATE AN ACCOUNT</h1>
 
-
-
-                <div class="login-form">
-                    <!---- CREATE A PHP FILE DATABASE CONNECTION----->
-                    <form action="config/reg-function.php" method="post">
-                        <!----   <input type="email" placeholder="E-mail Address">
-                        <input type="password" placeholder="Password">-->
-
-                        <!--REMEMBER ME FORM-->
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="First name" name="firstname">
+            <div class="form-container">
+                <div class="container">
+                    <h1 style="padding-top: 20px; color: black;">CREATE AN ACCOUNT</h1>
+    
+    
+    
+                    <div class="login-form">
+                        <!---- CREATE A PHP FILE DATABASE CONNECTION----->
+                        <form action="admin/config/reg-function.php" method="post">
+                            <!----   <input type="email" placeholder="E-mail Address">
+                            <input type="password" placeholder="Password">-->
+    
+                            <!--REMEMBER ME FORM-->
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="First name" name="firstname">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Last name" name="lastname">
+                                </div>
                             </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name" name="lastname">
+    
+                            <div class="row py-2">
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Email Address" name="email">
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control" placeholder="Contact Number" name="contact">
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="row py-2">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Email Address" name="email">
+    
+                            <div class="in-text py-2" style="width: 200px;">
+                                <input type="text" class="form-control" placeholder="Username" name ="Username">
+    
                             </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Contact Number" name="phone">
-                            </div>
-                        </div>
-
-                        <div class="in-text py-2" style="width: 200px;">
-                            <input type="text" class="form-control" placeholder="Username" name="username">
-
-                        </div>
-                        <!--TEXT ABOUT PASSWORD-->
-                        <div class="mb-1" style="width: 280px;">
-                            <p>Password must contain atleast 8 characters with: <br> </p>
-                            <h4> &#8226;lower case letters<br>
-                                &#8226; upper case letters<br>
-                                &#8226;
-                                numbers&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
-                                &#8226;special characters<br></h4>
-
-                        </div>
-
-
-
-                        <div class="mb-2" style="width: 280px;">
-                            <input type="password" class="form-control" id="pwd" placeholder="Enter password"
-                                name="password">
-
-                        </div>
-
-
-                        <div class="mb-2" style="width: 280px;">
-                            <input type="password" class="form-control" id="pwd" placeholder="Confirm Password"
-                                name="conpswd">
-                        </div>
-                        <div class="row py-3">
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="House No" name="houseNo">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="Baranggay" name="baranggay">
-                            </div>
-                            <div class="col">
-                                <input type="text" class="form-control" placeholder="City" name="city">
-                            </div>
+                            <!--TEXT ABOUT PASSWORD-->
+                            
+                                <div class="mb-2" style="width: 280px;">
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
+                                </div>
+                                <div class="mb-2" style="width: 280px;">
+                                    <input type="password" class="form-control" id="pwd" placeholder="Confirm Password" name="conpswd">
+                                </div>
 
                             <div class="row py-3">
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Province" name="province">
+                                    <input type="text" class="form-control" placeholder="House No" name="houseNo">
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Region" name="region">
+                                    <input type="text" class="form-control" placeholder="Baranggay" name="baranggay">
                                 </div>
                                 <div class="col">
-                                    <input type="text" class="form-control" placeholder="Postal Code" name="postal">
+                                    <input type="text" class="form-control" placeholder="City" name="city">
                                 </div>
-                                <div class="row py-2"></div>
-
-
-
-
-                                <!--REMEMBER ME FORM-->
-                                <!--REMEMBER ME FORM-->
-
-                                <!--FBUTTON-->
-                                <button type="submit" name="registration_btn">CONFIRM AND CONTINUE</button>
-                                <div class="back-to-login">
-                                    <a href="login.html">Back to login page</a>
-                                </div>
-
-
-                    </form>
+    
+                                <div class="row py-3">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Province" name="province">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Region" name="region">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Postal Code" name="postal">
+                                    </div>
+                                    <div class="row py-2"></div>
+    
+    
+    
+    
+                                    <!--REMEMBER ME FORM-->
+                                    <!--REMEMBER ME FORM-->
+    
+                                    <!--FBUTTON-->
+                                    <button type="submit">CONFIRM AND CONTINUE</button>
+                                    <div class="back-to-login">
+                                        <a href="login.html">Back to login page</a>
+                                    </div>
+    
+    
+                        </form>
+                    </div>
+    
                 </div>
-
             </div>
+            
         </div>
     </div>
 

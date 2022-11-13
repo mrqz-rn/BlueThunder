@@ -1,15 +1,14 @@
-<br>
 <?php
 
     session_start();
     include('databasecon.php');
 
     // DATA FROM USER INPUTS
-    $lastname = $_POST["lastname"];
-    $firstname = $_POST["firstname"];
+    $lastname = $_POST["firstname"];
+    $firstname = $_POST["lastname"];
     $email = $_POST["email"];
-    $phone = $_POST["phone"];
-    $username = $_POST["username"];
+    $contact = $_POST["contact"];
+    $Username = $_POST["Username"];
 
     $password = $_POST["password"];
     $conpswd = $_POST["conpswd"];
@@ -22,15 +21,14 @@
     $region = $_POST["region"];
     $postal = $_POST["postal"];
     
-    $address = $houseNo .", ". $baranggay .", ". $city .", ". $province
-    .", ". $region .", ". $postal;
+    $address = $houseNo .", ". $baranggay .", ". $city .", ". $province.", ". $region .", ". $postal;
     // END_DATA FROM USER INPUTS
 
-    
-    if($password == $conpswd){
-        $insert_query = "INSERT INTO user_table (lastname,firstname,email,phone,username,password,address)
-        VALUES ('$lastname','$firstname','$email','$phone','$username','$password','$address')";
-
+  
+          if($password == $conpswd){
+        $insert_query = "INSERT INTO user_table (firstname,lastname,email,contact,Username,password,houseNo,baranggay,city,province,region,postal,address)
+        VALUES ('$firstname',' $lastname', '$email', '$contact', '$Username', '$password', '$houseNo', '$baranggay', '$city', '$province', '$region','$postal','$address')";
+          
         $insert_query_run = mysqli_query($con, $insert_query);
         
         if($insert_query_run) {
@@ -47,7 +45,3 @@
 
 
 ?>
-
-
-
-
