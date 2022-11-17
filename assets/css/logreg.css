@@ -83,7 +83,7 @@ h4{
     position: relative;
     height: 100vh;
     width: 1194px;
-    background: url("images/Image1.jpeg") no-repeat center center scroll;
+    background: url("../img/back.jpeg") no-repeat center center scroll;
     background-size: cover;
     float: left;
     -webkit-animation: bgslide 2.3s forwards;
@@ -331,7 +331,7 @@ h4{
     }
     .bg-illustration {
       float: none;
-      background: url("images/Image1.jpeg") center center;
+      background: url("../img/back.jpeg") center center;
       background-size: cover;
       -webkit-animation: slideIn 0.8s ease-in-out forwards;
               animation: slideIn 0.8s ease-in-out forwards;

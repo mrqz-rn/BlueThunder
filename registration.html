@@ -11,7 +11,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
-    <link rel="stylesheet" href="stylez.css">
+    <link rel="stylesheet" href="assets/css/logreg.css">
     <title>Registration Page Blue Thunder</title>
 </head>
 
@@ -19,7 +19,7 @@
 
     <div class="parent clearfix">
         <div class="bg-illustration">
-            <img src="images/B_logo.png" alt="logo">
+            <img src="assets/img/B_logo.png" alt="logo">
             <div class="centered"> 
                 <h3 class="caption">Forever</h3>
                 <h3 class="caption">true to the</h3>
@@ -43,7 +43,7 @@
     
                     <div class="login-form">
                         <!---- CREATE A PHP FILE DATABASE CONNECTION----->
-                        <form action="/action_page.php">
+                        <form action="admin/config/reg-function.php" method="post">
                             <!----   <input type="email" placeholder="E-mail Address">
                             <input type="password" placeholder="Password">-->
     
@@ -67,13 +67,13 @@
                             </div>
     
                             <div class="in-text py-2" style="width: 200px;">
-                                <input type="text" class="form-control" placeholder="Username">
+                                <input type="text" class="form-control" placeholder="Username" name ="Username">
     
                             </div>
                             <!--TEXT ABOUT PASSWORD-->
                             
                                 <div class="mb-2" style="width: 280px;">
-                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+                                    <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="password">
                                 </div>
                                 <div class="mb-2" style="width: 280px;">
                                     <input type="password" class="form-control" id="pwd" placeholder="Confirm Password" name="conpswd">
