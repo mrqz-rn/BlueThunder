@@ -32,7 +32,12 @@ iframe {
 }
 
 a, a:focus, a:hover {
-  text-decoration: none;
+  text-decoration: none;  
+  outline: 0;
+  color: #fff;
+}
+a, a:focus, a:hover, #pro{
+  text-decoration: none;  
   outline: 0;
   color: #000;
 }
@@ -943,7 +948,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
   display: inline-block;
 }
 .product-item .product-thumb .preview-meta li a, .product-item .product-thumb .preview-meta li span {
-  background: #fff;
+  background: #0042c2;
   padding: 10px 0px;
   cursor: pointer;
   display: inline-block;
@@ -2297,6 +2302,7 @@ input[type=email]:focus, input[type=password]:focus, input[type=text]:focus, inp
     transition: 0.4s ease;
     font-weight: 400px;
     cursor: pointer;
+    color: black;
 }
 .product_img{
     height: 15vh;
