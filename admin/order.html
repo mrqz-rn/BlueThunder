@@ -7,7 +7,7 @@
         <title>Blue Thunder</title>
         <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
         <link href="assets/css/Bootstrap.css" rel="stylesheet" />
-        <link rel="stylesheet" href="assets/css/dash.css">        
+        <link rel="stylesheet" href="dash.css">        
     </head>
     <body class="sb-nav-fixed">
         <!-- TOP NAVBAR -->
@@ -45,16 +45,16 @@
                                 Sales
                             </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">MANAGE</div>
-                            <a class="nav-link" href="users.html" style="color: white;">
-                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-users" style="color: white;"></i></div>
+                            <a class="nav-link" href="users.html" >
+                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-users"></i></div>
                                 Users
                             </a>
                             <a class="nav-link" href="products.html">
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-table"></i></div>
                                 Products
                             </a>
-                            <a class="nav-link" href="products.html" >
-                                <div class="sb-nav-link-icon fs-6"><i class="fas fa-truck"></i></div>
+                            <a class="nav-link" href="products.html" style="color: white;">
+                                <div class="sb-nav-link-icon fs-6"><i class="fas fa-truck" style="color: white;"></i></div>
                                 Orders
                             </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">OTHERS</div>
@@ -99,11 +99,12 @@
                                                 <thead>
                                                     <tr role="row">
                                                         <th class="text-center py-1 px-2" style="width: 5%;">#</th>
-                                                        <th class="py-1 px-2" style="width: 10%;">Lastname</th>
-                                                        <th class="py-1 px-2" style="width: 10%;">Firstname</th>
-                                                        <th class="py-1 px-2" style="width: 10%;">Username</th>
-                                                        <th class="py-1 px-2" style="width: 15%;">Email</th>
-                                                        <th class="py-1 px-2 text-center" style="width: 15%;">Option</th>
+                                                        <th class="py-1 px-2" style="width: 15%;">Date Ordered</th>
+                                                        <th class="py-1 px-2" style="width: 15%;">Customer</th>
+                                                        <th class="py-1 px-2" style="width: 10%;">Total</th>
+                                                        <th class="py-1 px-2 text-center" style="width: 10%;">Payment</th>
+                                                        <th class="py-1 px-2 text-center" style="width: 10%;">Status</th>
+                                                        <th class="py-1 px-2 text-center" style="width: 10%;">Action</th>
                                                         
                                                         
                                                     </tr>
@@ -117,13 +118,14 @@
                                                         <td class="py-3 px-2 data">Marquez</td>
                                                         <td class="py-3 px-2">Ron</td>
                                                         <td class="py-3 px-2">ronmrqz</td>
-                                                        <td class="py-3 px-2">ron@gmail.com</td>
+                                                        <td class="py-3 px-2 text-center">COD</td>
+                                                        <td class="py-3 px-2 text-center">Packed</td>
                                                         <td class="" align="center" >
                                                                 <a class="nav-link dropdown-toggle " id="navbarDropdown action-b" href="#" role="button" data-bs-toggle="dropdown"> Action </a>
                                                                 <ul class="dropdown-menu dropdown-menu-end">
                                                                     <li><a class="dropdown-item" href="#!"> <span class="fa fa-edit text-primary"></span> Edit</a></li>
                                                                     <li><hr class="dropdown-divider" /></li>
-                                                                    <li><a class="dropdown-item" href="#!" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
+                                                                    <li><a class="dropdown-item" href="#!"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
                                                                 </ul>
                                                        </td>
                                                         
@@ -134,33 +136,17 @@
                                                         <td class="py-3 px-2">Marquez</td>
                                                         <td class="py-3 px-2">Ron</td>
                                                         <td class="py-3 px-2">ronmrqz</td>
-                                                        <td class="py-3 px-2">ron@gmail.com</td>
+                                                        <td class="py-3 px-2 text-center">COD</td>
+                                                        <td class="py-3 px-2 text-center">Delivered</td>
                                                         <td class="" align="center" >
                                                             <a class="nav-link dropdown-toggle " id="navbarDropdown action-b" href="#" role="button" data-bs-toggle="dropdown"> Action </a>
                                                             <ul class="dropdown-menu dropdown-menu-end">
                                                                 <li><a class="dropdown-item" href="#!"> <span class="fa fa-edit text-primary"></span> Edit</a></li>
                                                                 <li><hr class="dropdown-divider" /></li>
-                                                                <li><a class="dropdown-item" href="#!" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
+                                                                <li><a class="dropdown-item" href="#!"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
                                                             </ul>
                                                    </td>
-                                                    </tr> 
-                                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                          <div class="modal-content">
-                                                            <div class="modal-header">
-                                                              <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmation</h1>
-                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                Are you sure to delete this user permanently?
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                              <button type="button" class="btn btn-primary">Continue</button>
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                      </div> 
+                                                    </tr>  
                                                 </tbody>
                                                 <!-- END_USERS RECORD-->
                                             </table>
