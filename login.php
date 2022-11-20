@@ -1,10 +1,6 @@
 <?php
 session_start();
 
-if(isset($_SESSION['auth'])){
-    echo "<script>window.location.href='index.php';</script>";
-}
-
 ?>
 
 
@@ -57,7 +53,7 @@ if(isset($_SESSION['auth'])){
                         unset($_SESSION['log_message']);
                         } ?>
                         <!---- CREATE A PHP FILE DATABASE CONNECTION----->
-                        <form action="config/login-function.php" method="post" >
+                        <form action="config/userlog.php" method="post" >
                             <div class="mb-2 center" style="width: 280px;">
                                 <input type="username" class="form-control" placeholder="username" name="username">
                             </div>

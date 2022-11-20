@@ -17,8 +17,8 @@ if(isset($_SESSION['auth'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!---- BOOTSTRAP----->
-        <link href="assets/css/Bootstrap.css" rel="stylesheet" />
-        <link rel="stylesheet" href="assets/css/stylez.css">
+    <link href="assets/css/Bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/lrstyle.css">
     <link rel="icon" href="images/icon.png">
     <title>BlueThunder Admin</title>
 </head>
@@ -63,10 +63,13 @@ if(isset($_SESSION['auth'])){
                             </div>
                             <div class="mb-2 center" style="width: 280px;">
                                 <input type="password" class="form-control" placeholder="password" name="password">
+                                
                             </div> 
-
-                            <!--FBUTTON-->
-                            <button class="center" type="submit" name="login-btn">Log In</button>
+                            <div class="center">
+                                <button class="center ms-0" type="submit" name="login-btn">Log In</button>
+                            </div>
+                            
+                            
                         </form>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ include('config/authentication.php');
             <ul class="navbar-nav ms-auto ms-md-auto me-5 me-lg-4">
                 <li class="nav-item dropdown d-md-inline-block ms-auto">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"><i class="fas fa-user fa-fw fs-5"></i> 
-                    <?php echo $_SESSION['user']; ?> 
+                    <?php echo $_SESSION['admin']; ?> 
                     </a>
 
 

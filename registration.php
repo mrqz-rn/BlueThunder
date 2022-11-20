@@ -35,7 +35,16 @@ session_start();
         </div>
 
         <div class="login">
-
+            <?php     
+            if(isset($_SESSION['log_message']))
+            { ?>
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Error!</strong> <?= $_SESSION['log_message'];?>
+            </div>
+            <?php 
+            unset($_SESSION['log_message']);
+            } ?>
             <div class="form-container">
                 <div class="container">
                     <h1 style="padding-top: 20px; color: black;">CREATE AN ACCOUNT</h1>
@@ -44,7 +53,7 @@ session_start();
     
                     <div class="login-form">
                         <!---- CREATE A PHP FILE DATABASE CONNECTION----->
-                        <form action="admin/config/reg-function.php" method="post">
+                        <form action="config/reg-function.php" method="post">
                             <!----   <input type="email" placeholder="E-mail Address">
                             <input type="password" placeholder="Password">-->
     
@@ -68,7 +77,7 @@ session_start();
                             </div>
     
                             <div class="in-text py-2" style="width: 200px;">
-                                <input type="text" class="form-control" placeholder="Username" name ="Username">
+                                <input type="text" class="form-control" placeholder="Username" name ="username">
     
                             </div>
                             <!--TEXT ABOUT PASSWORD-->
