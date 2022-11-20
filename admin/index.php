@@ -46,7 +46,7 @@ include('config/authentication.php');
                         <div class="nav mt-4">
                             
                             <div class="sb-sidenav-menu-heading bg_dblue">REPORTS</div>
-                            <a class="nav-link" href="index.html" style="color: white;">
+                            <a class="nav-link" href="index.php" style="color: white;">
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-tachometer-alt" style="color: white;"></i></div>
                                 Overview
                             </a>
@@ -56,12 +56,16 @@ include('config/authentication.php');
                             </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">MANAGE</div>
                             <a class="nav-link" href="users.html">
-                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-users"></i></div>
+                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-users" ></i></div>
                                 Users
                             </a>
-                            <a class="nav-link" href="products.html">
+                            <a class="nav-link" href="product/productlist.html">
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-table"></i></div>
                                 Products
+                            </a>
+                            <a class="nav-link" href="order.html" >
+                                <div class="sb-nav-link-icon fs-6"><i class="fas fa-truck"></i></div>
+                                Orders
                             </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">OTHERS</div>
 
