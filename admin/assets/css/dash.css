@@ -97,12 +97,7 @@ label {
     color: white;
     padding: 0px 7.5px;
 }
-img{
-    object-fit: cover;
-    height: 918px;
-    width: 850px;
-    margin: auto;
-}
+
 .login {
     width: 600px;
     justify-content: center;
