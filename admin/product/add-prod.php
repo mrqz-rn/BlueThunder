@@ -1,3 +1,8 @@
+<?php
+
+include('../config/authentication.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,8 +11,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <title>Blue Thunder</title>
         <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
+        <!-- ALERTIFY CSS  -->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
         <link href="../assets/css/Bootstrap.css" rel="stylesheet" />
-        <link rel="stylesheet" href="../assets/css/dash.css">        
+        <link rel="stylesheet" href="../assets/css/dash.css"> 
+        <link rel="icon" href="../images/icon.png">         
     </head>
     <body class="sb-nav-fixed">
         <!-- TOP NAVBAR -->
@@ -41,15 +51,15 @@
                                 Overview
                             </a>
                             <a class="nav-link" href="../sales.html" >
-                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-money-check-alt" ></i></div>
+                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-money-check-alt"></i></div>
                                 Sales
                             </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">MANAGE</div>
-                            <a class="nav-link" href="../users.html" >
+                            <a class="nav-link" href="../users.php" >
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-users"></i></div>
                                 Users
                             </a>
-                            <a class="nav-link" href="productlist.html" style="color: white;">
+                            <a class="nav-link" href="productlist.php" style="color: white;">
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-table" style="color: white;"></i></div>
                                 Products
                             </a>
@@ -75,78 +85,67 @@
                     <div class="container-fluid">
                       <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Product</h3>
+                            <h3 class="card-title">Add Product</h3>
                         </div>
+
+                        <form action="../config/product-function.php" method="post" enctype="multipart/form-data">
                         <div class="card-body">
+                            
                             <div class="container-fluid">
                                 <div id="list_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                                     <h5 class="my-2">Product Name</h5>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="productname">
                                     
                                     <div class="row">
                                         <div class="col"><h5 class="my-2">Category</h5></div>
-                                        <div class="col"><h5 class="my-2">Variation</h5></div>
                                         <div class="col"><h5 class="my-2">Price</h5></div>
+                                        <div class="col"><h5 class="my-2"># Stock</h5></div>
                                     </div>
                                     <div class="row">
                                         <div class="col"> 
-                                            <select class="form-select">
+                                            <select class="form-select" name="category">
                                                 <option selected>Select</option>
-                                                <option value="1">Shirt</option>
-                                                <option value="2">Jacket</option>
-                                                <option value="3">Bag</option>
-                                                <option value="4">Lace</option>
-                                                <option value="5">Others</option>
+                                                <option value="Shirt">Shirt</option>
+                                                <option value="Jacket">Jacket</option>
+                                                <option value="Bag">Bag</option>
+                                                <option value="Lace">Lace</option>
+                                                <option value="Others">Others</option>
                                             </select>
                                         </div>
-                                        <div class="col"> <input type="text" class="form-control"> </div>
                                         <div class="col input-group"> 
                                             <span class="input-group-text">₱</span>
-                                            <input type="text" class="form-control"> 
+                                            <input type="text" class="form-control" name="price"> 
+                                        </div>
+                                        <div class="col"> 
+                                            <input type="text" class="form-control" name="stock"> 
                                         </div>
                                     </div>
 
                                     <h5 class="my-2">Description</h5>
                                     <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="description"></textarea>
                                         <label for="floatingTextarea2"></label>
                                     </div>
                                     <h5 class="my-2">Status</h5>
-                                    <select class="form-select my-2">
+                                    <select class="form-select my-2" name ="status">
                                         <option selected>Select</option>
-                                        <option value="1">Active</option>
-                                        <option value="2">Inactive</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
                                     </select>
                                     <h5 class="my-2">Image</h5>
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">Default file input example</label>
-                                        <input class="form-control" type="file" id="formFile">
+                                        <input class="form-control" type="file" id="image" name="image" accept=".jpeg, .jpg, .png">
                                       </div>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button type="button" class="btn btn-primary me-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Save</button>
-                                <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                                <button type="submit" class="btn btn-primary me-3" name="add-prod-btn">Save</button>
+                                <button type="button" class="btn btn-outline-secondary" name="cancel-prod-btn">Cancel</button>
                             </div>
-
-                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Confirmation</h1>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Update succesfully.
-                                    </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div> 
+                       
                         </div>
-                        
+                        </form>
                         </div>
                     </div>
                 </section>
@@ -161,6 +160,16 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
+        
+        <!-- ALERTIFY JS -->
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script>
+            <?php if(isset($_SESSION['add_msg'])){  ?>
+                alertify.set('notifier','position', 'top-right');
+                alertify.success('<?= $_SESSION['add_msg'];?>');  
+            <?php unset($_SESSION['add_msg']);   } ?>
+        </script>
+
 
     </body>
 </html>

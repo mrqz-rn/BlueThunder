@@ -1,3 +1,11 @@
+<?php
+session_start();
+include('admin/config/authcode.php');
+
+
+?>
+
+
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +16,9 @@
     <title>Blue Thunder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/productlist.css">
-    <link rel="icon" href="../assets/img/icon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/productlist.css">
+    <link rel="icon" href="assets/img/icon.png">
     
 </head>
       
@@ -34,26 +42,53 @@
   <div class="container">
       
     <div class="col-md-4 col-xs-12 col-sm-4"> 
-      <img src="../assets/img/B_logo.png"  width="90px" height="85px">
+      <img src="assets/img/B_logo.png"  width="90px" height="85px">
     </div>
     
     <div class="d-flex flex-row-reverse">
-        <div class="icons">
-          <ul class="top-menu text-right d-flex justify-content-center">
-            <li class="dropdown search dropdown-slide">
-              <a href="#!" data-toggle="dropdown"><i
-                  class="fas fa-search"></i> </a>
-              <ul class="dropdown-menu ">
+            <div class="icons">
+              <ul class="top-menu text-right d-flex justify-content-center">
+                <li class="dropdown search dropdown-slide">
+                  <a href="#!" data-toggle="dropdown"><i
+                      class="fas fa-search"></i> </a>
+                  <ul class="dropdown-menu ">
+                    <li>
+                      <form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+                    </li>
+                  </ul>
+                </li>
                 <li>
-                  <form action="post"><input type="search" class="form-control" placeholder="Search..."></form>
+                  <a href="cart.html"><i class="position-relative fas fa-shopping-cart"> 
+                    <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
+                      0</p></i>
+                 
+                  </a> 
+                </li>
+                <?php     
+                    if(isset($_SESSION['user_auth']))
+                    { ?>
+                <li class=" nav-item dropdown"><a class=" dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
+                  <i class="fas fa-user position-relative"></i></a> 
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!"><?php echo $_SESSION['user']; ?> </a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="config/logout.php">Logout</a></li>
+                  </ul>
+                </li> 
+                <?php 
+                    } else { ?>
+                  <li class=" nav-item dropdown"><a href="login.php" class="dropdown-toggle" id="navbarDropdown" >
+                  <i class="fas fa-user position-relative"></i></a> 
+                  
+                </li> 
+                <?php 
+                    } ?>
                 </li>
               </ul>
-            </li>
-            <li><a href="../cart.html"><i class="fas fa-shopping-cart"></i></a></li>
-            <li><a href="../registration.html"><i class="fas fa-user"></i></a> </li>
-          </ul>
+            </div>
         </div>
-    </div>
+
+
   </div>
 </div>
 <!----------------- BLACK NAVBAR-------------------->
@@ -64,18 +99,19 @@
     </button>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="navlink mx-2"><a href="../index.php" class="text-light">HOME</a></li>
+        <li class="navlink mx-2"><a href="index.php" class="text-light">HOME</a></li>
         <li class="navlink dropdown dropdown-slide mx-2">
           <a href="#!" class="text-light" >PRODUCTS</a>
           <ul class="dropdown-menu">
-            <li><a href="../product-client/productlist.html" class="pro">SHIRTS</a></li>
-            <li><a href="../product-client/productlist.html" class="pro">JACKETS</a></li>
-            <li><a href="../product-client/productlist.html" class="pro">TOTE BAGS</a></li>
-            <li><a href="../product-client/productlist.html" class="pro">OTHERS</a></li>
+                <li><a href="productlist.php?category=All" class="pro">ALL</a></li>
+                <li><a href="productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
+                <li><a href="productlist.php?category=Jacket" class="pro">JACKETS</a></li>
+                <li><a href="productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
+                <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
           </ul>
         </li>
-        <li class="navlink mx-2"><a href="../about.html" class="text-light">ABOUT US</a></li>
-        <li class="navlink mx-2"><a href="../contact.html" class="text-light">CONTACT US</a></li>
+        <li class="navlink mx-2"><a href="about.html" class="text-light">ABOUT US</a></li>
+        <li class="navlink mx-2"><a href="contact.html" class="text-light">CONTACT US</a></li>
       </ul>
     </div>
   </div>
@@ -88,62 +124,76 @@
      <nav class="pic-head" 
             style="
             height: 150px;
-            background-image: linear-gradient(rgba(0,37,108,0.7), rgba(0,37,108,0.7)), url(../assets/img/banner.jpg);
+            background-image: linear-gradient(rgba(0,37,108,0.7), rgba(0,37,108,0.7)), url(assets/img/banner.jpg);
             background-repeat: no-repeat;
-            background-size: cover;                       
-                  "> 
+            background-size: cover;   ">                      
     </nav>
   <!---------------- PICTURE HEADER -----------------> 
 
     
     
     
-  <!------------------ BLUE HEADER ------------------> 
+  <!-------- BLUE HEADER --------> 
      <div class="container-fluid"
           style="
                 background-color: #00256c;
                 height: 60px;
                  ">
         <div class=" container navbar-brand" style="padding: 1.5px;">
-          JACKETS
-            
+        <?php 
+         $prodCATEGORY;
+         if(isset($_GET['category'])){
+          $productCAT = $_GET['category'];
+          echo $productCAT;
+         }
+        ?>
          </div>
     </div>
- <!------------------- BLUE HEADER --------------------> 
+ <!-------- BLUE HEADER ----------> 
     
+        
+        
+    
+    
+<!----- PRODUCT DISPLAY ------>
+<main>
   
-    
-    
-<!------------------- PRODUCT DISPLAY ------------------>
-    <main>
-
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-        <center>
+        
+        <?php 
+          if(isset($_GET['category'])){
+          $productCAT = $_GET['category'];
+          $displayCAT = getProductCat("product_table", $productCAT);
+          $productDATA;
+          if(mysqli_num_rows($displayCAT) > 0){
+            foreach($displayCAT as $productDATA){ 
+        ?>
         <div class="col">
           <div class="card shadow-sm">
-            <a href=""><center><img src="../assets/img/jacket1.jpeg" width="200" height="250" ></center> </a>
+            <a href=""><center><img src="admin/images/product-image/<?= $productDATA['image']?>" width="200" height="250" ></center> </a>
             <div class="card-body">
-              <a href=""><p class="card-text"> Blue Thunder Official jackets kemers (sample product name)</p></a>
+              <a href=""><p class="card-text"><?= $productDATA['product_name']?></p></a>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary" align = "center">Add to Cart</button>
                 </div>
-                <small class="text-muted1">₱ 000</small>
+                <small class="text-muted1">Php <?= $productDATA['price']?></small>
               </div>
             </div>
           </div>
         </div>
-      </center>
-      
-         
+        <?php  
+          }
+          } 
+          } ?> 
         
-        
-          
       </div>
     </div>
   </div>   
+  
+  
 </main> 
 <!------------------- PRODUCT DISPLAY ------------------>
     

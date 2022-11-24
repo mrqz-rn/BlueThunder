@@ -26,8 +26,6 @@ include('config/authentication.php');
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"><i class="fas fa-user fa-fw fs-5"></i> 
                     <?php echo $_SESSION['admin']; ?> 
                     </a>
-
-
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">Account</a></li>
                         <li><hr class="dropdown-divider" /></li>
@@ -55,15 +53,15 @@ include('config/authentication.php');
                                 Sales
                             </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">MANAGE</div>
-                            <a class="nav-link" href="users.html">
+                            <a class="nav-link" href="users/users.php">
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-users" ></i></div>
                                 Users
                             </a>
-                            <a class="nav-link" href="product/productlist.html">
+                            <a class="nav-link" href="product/productlist.php">
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-table"></i></div>
                                 Products
                             </a>
-                            <a class="nav-link" href="order.html" >
+                            <a class="nav-link" href="orders/order.html" >
                                 <div class="sb-nav-link-icon fs-6"><i class="fas fa-truck"></i></div>
                                 Orders
                             </a>

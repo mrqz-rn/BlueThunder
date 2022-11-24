@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+include('config/user-function.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +24,7 @@ session_start();
       <div class="container">
           
         <div class="col-md-4 col-xs-12 col-sm-4"> 
-          <img src="assets/img/B_logo.png"  width=90px" height="85px">
+          <img src="assets/img/B_logo.png"  width="90px" height="85px">
         </div>
         
         <div class="d-flex flex-row-reverse">
@@ -69,11 +69,15 @@ session_start();
               </ul>
             </div>
         </div>
+
+
       </div>
     </div>
     <!---- HEADER----->
 
     <!---- NAVBAR----->
+    
+
     <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #050404;">
       <div class="container">
         <button class="navbar-toggler" type="button">
@@ -81,14 +85,15 @@ session_start();
         </button>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="navlink mx-2"><a href="index.html" class="text-light">HOME</a></li>
+            <li class="navlink mx-2"><a href="index.php" class="text-light">HOME</a></li>
             <li class="navlink dropdown dropdown-slide mx-2">
               <a href="#!" class="text-light" >PRODUCTS</a>
               <ul class="dropdown-menu">
-                <li><a href="#!" class="pro">SHIRTS</a></li>
-                <li><a href="product-list-initial/jackets.html" class="pro">JACKETS</a></li>
-                <li><a href="#!" class="pro">TOTE BAGS</a></li>
-                <li><a href="#!" class="pro">OTHERS</a></li>
+                <li><a href="productlist.php?category=All" class="pro">ALL</a></li>
+                <li><a href="productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
+                <li><a href="productlist.php?category=Jacket" class="pro">JACKETS</a></li>
+                <li><a href="productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
+                <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
               </ul>
             </li>
             <li class="navlink mx-2"><a href="about.html" class="text-light">ABOUT US</a></li>
@@ -97,6 +102,7 @@ session_start();
         </div>
       </div>
     </nav>
+    
     <!---- NAVBAR----->
 
 
@@ -123,8 +129,8 @@ session_start();
           </div>
           <div class="col-md-6">
             <div class="category-box">
-              <a href="#!">
-                <img src="assets/img/c1.png" alt="" />
+              <a href="productlist.php?category=Shirt">
+                <img src="assets/img/category/c1.png" alt="" />
                 <div class="content">
                   <h3>Clothes</h3>
                   <p>Shop New Season Clothing</p>
@@ -132,8 +138,8 @@ session_start();
               </a>	
             </div>
             <div class="category-box">
-              <a href="#!">
-                <img src="assets/img/c2.png" alt="" />
+              <a href="productlist.php?category=Bag">
+                <img src="assets/img/category/c2.png" alt="" />
                 <div class="content">
                   <h3>Bags</h3>
                   <p>Get Wide Range Selection</p>
@@ -143,8 +149,8 @@ session_start();
           </div>
           <div class="col-md-6">
             <div class="category-box category-box-2">
-              <a href="#!">
-                <img src="assets/img/c3.png" alt="" />
+              <a href="productlist.php?category=Jacket">
+                <img src="assets/img/category/c3.png" alt="" />
                 <div class="content">
                   <h3>Jackets</h3>
                   <p>Limited Edition Designs</p>
@@ -161,14 +167,23 @@ session_start();
         <div class="container">
           <div class="row">
             <div class="title text-center">
-              <h2>Popular Products</h2>
+              <h2>New Products</h2>
             </div>
           </div>
+
           <div class="row">
-            <div class="col-md-4">
+          <?php 
+          $product4 = getALL4new("product_table");
+          $top4 = 0;
+          
+          if(mysqli_num_rows($product4) > 0){
+          
+          foreach($product4 as $item4){
+          ?>
+            <div class="col-md-3">
               <div class="product-item">
                 <div class="product-thumb">
-                  <img class="img-responsive" src="assets/img/product/bag1.png" alt="product-img" />
+                  <img class="img-responsive" src="admin/images/product-image/<?= $item4['image'];?>" alt="product-img" width="90px" height="85px" />
                   <div class="preview-meta">
                     <ul>
                       <li>
@@ -178,47 +193,17 @@ session_start();
                   </div>
                 </div>
                 <div class="product-content">
-                  <h4><a href="product-single.html">Product Name</a></h4>
-                  <p class="price">Php 300.00</p>
+                  <h4><a href="product-single.html"><?= $item4['product_name'];?></a></h4>
+                  <p class="price">Php <?= $item4['price'];?></p>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="product-item">
-                <div class="product-thumb">
-                  <img class="img-responsive" src="assets/img/product/bag1.png" alt="product-img" />
-                  <div class="preview-meta">
-                    <ul>
-                      <li>
-                          <a href="#!" ><i class="fas fa-cart-plus"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="product-content">
-                  <h4><a href="product-single.html">Product Name</a></h4>
-                  <p class="price">Php 300.00</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="product-item">
-                <div class="product-thumb">
-                  <img class="img-responsive" src="assets/img/product/bag1.png" alt="product-img" />
-                  <div class="preview-meta">
-                    <ul>
-                      <li>
-                          <a href="#!" ><i class="fas fa-cart-plus"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div class="product-content">
-                  <h4><a href="product-single.html">Product Name</a></h4>
-                  <p class="price">Php 300.00</p>
-                </div>
-              </div>
-            </div>
+            <?php 
+            }
+            } else { echo "No records"; }
+            
+            ?>
+            
       
           </div>
         </div>
