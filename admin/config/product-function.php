@@ -82,10 +82,8 @@ if(isset($_POST['del-prod-btn'])){
     echo "deleting";
 
     $prodID = $_POST['prod-delID'];
-    
     $del_prod_sql = "DELETE FROM product_table WHERE product_id = '$prodID' ";
     $del_prod_sql_run = mysqli_query($con, $del_prod_sql);
-
     if($del_prod_sql_run){
         $_SESSION['edit_msg'] = "Product deleted successfully";
         header('Location: ../product/productlist.php');

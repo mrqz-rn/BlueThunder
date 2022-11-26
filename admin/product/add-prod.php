@@ -134,7 +134,7 @@ include('../config/authentication.php');
                                     </select>
                                     <h5 class="my-2">Image</h5>
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Default file input example</label>
+                                        <label for="formFile" class="form-label">Filename: .jpeg, .jpg, .png</label>
                                         <input class="form-control" type="file" id="image" name="image" accept=".jpeg, .jpg, .png">
                                       </div>
                                 </div>

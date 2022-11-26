@@ -1,12 +1,6 @@
 <?php
-session_start();
-include('admin/config/authcode.php');
-
-
+include('config/user-function.php');
 ?>
-
-
-<!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +52,7 @@ include('admin/config/authcode.php');
                   </ul>
                 </li>
                 <li>
-                  <a href="cart.html"><i class="position-relative fas fa-shopping-cart"> 
+                  <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
                     <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
                       0</p></i>
                  
@@ -90,32 +84,32 @@ include('admin/config/authcode.php');
 
 
   </div>
+  
 </div>
 <!----------------- BLACK NAVBAR-------------------->
 <nav class="navbar navbar-expand-lg navbar-dark " style="background-color: #050404;">
-  <div class="container">
-    <button class="navbar-toggler" type="button">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-        <li class="navlink mx-2"><a href="index.php" class="text-light">HOME</a></li>
-        <li class="navlink dropdown dropdown-slide mx-2">
-          <a href="#!" class="text-light" >PRODUCTS</a>
-          <ul class="dropdown-menu">
+      <div class="container">
+        <button class="navbar-toggler" type="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="navlink mx-2"><a href="index.php" class="text-light">HOME</a></li>
+            <li class="navlink dropdown dropdown-slide mx-2">
+              <a href="#!" class="text-light" >PRODUCTS</a>
+              <ul class="dropdown-menu">
                 <li><a href="productlist.php?category=All" class="pro">ALL</a></li>
                 <li><a href="productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
                 <li><a href="productlist.php?category=Jacket" class="pro">JACKETS</a></li>
                 <li><a href="productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
                 <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
+              </ul>
+            </li>
+            <li class="navlink mx-2"><a href="about.php" class="text-light">ABOUT US</a></li>
           </ul>
-        </li>
-        <li class="navlink mx-2"><a href="about.html" class="text-light">ABOUT US</a></li>
-        <li class="navlink mx-2"><a href="contact.html" class="text-light">CONTACT US</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+        </div>
+      </div>
+    </nav>
 <!----------------- BLACK NAVBAR--------------------->
  
     
@@ -172,9 +166,9 @@ include('admin/config/authcode.php');
         ?>
         <div class="col">
           <div class="card shadow-sm">
-            <a href=""><center><img src="admin/images/product-image/<?= $productDATA['image']?>" width="200" height="250" ></center> </a>
+            <a href="view-product.php?product_id=<?= $productDATA['product_id']?>"><center><img src="admin/images/product-image/<?= $productDATA['image']?>" width="200" height="250" ></center> </a>
             <div class="card-body">
-              <a href=""><p class="card-text"><?= $productDATA['product_name']?></p></a>
+              <a href="view-product.php?product_id=<?= $productDATA['product_id']?>"><p class="card-text"><?= $productDATA['product_name']?></p></a>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary" align = "center">Add to Cart</button>

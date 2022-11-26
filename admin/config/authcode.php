@@ -12,12 +12,6 @@
         return $query_tab_run = mysqli_query($con, $query_tab);
     }
 
-    function getALLunique($table){
-        global $con;
-        $query_tab = "SELECT DISTINCT product_name  FROM $table";
-        return $query_tab_run = mysqli_query($con, $query_tab);
-    }
-
     function getProductCat($table, $productCat){
         global $con;
         if( $productCat != 'All'){

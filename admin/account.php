@@ -1,6 +1,4 @@
 <?php 
-
-
 include('config/authentication.php');
 ?>
 
@@ -13,12 +11,14 @@ include('config/authentication.php');
         <title>Blue Thunder</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="assets/css/Bootstrap.css" rel="stylesheet" />
+        <link href="assets/css/dash.css" rel="stylesheet" />
         <link rel="icon" href="images/icon.png">
     </head>
     <body class="sb-nav-fixed">
         <!-- TOP NAVBAR -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bgblue">
-        <a href="index.php"><img src="images/B_logo.png" class="mx-7" width="80px"></a>
+            <a href="index.php"><img src="images/B_logo.png" class="mx-7" width="80px"></a>
+            
             
                 <button class=" btn btn-link btn-sm fs-4" id="sidebarToggle" align="right"><i class="fas fa-bars"></i></button>
             <ul class="navbar-nav ms-auto ms-md-auto me-5 me-lg-4">
@@ -77,62 +77,76 @@ include('config/authentication.php');
             <!-- PAGE CONTENT -->
             <div id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-3">
-                        <h2 class="my-4">Dashboard</h2>
-                        <!-- STATS -->
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg_lyellow text-dark mb-4">
-                                    <div class="card-body">
-                                        <h5>TOTAL REVENUE</h5>
-                                        <div class="m-2 fs-4" align="center">184,500</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg_lyellow text-dark mb-4">
-                                    <div class="card-body">
-                                        <h5>TOTAL REVENUE</h5>
-                                        <div class="m-2 fs-4" align="center">184,500</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg_lyellow text-dark mb-4">
-                                    <div class="card-body">
-                                        <h5>TOTAL REVENUE</h5>
-                                        <div class="m-2 fs-4" align="center">184,500</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg_lyellow text-dark mb-4">
-                                    <div class="card-body">
-                                        <h5>TOTAL REVENUE</h5>
-                                        <div class="m-2 fs-4" align="center">184,500</div>
-                                    </div>
-                                </div>
-                            </div>
+                  <section class="content  text-dark">
+                    <div class="container-fluid">
+                      <div class="card card-outline card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Account</h3>
+                        </div>
 
+                        <form action="../config/product-function.php" method="post" enctype="multipart/form-data">
+                        <div class="card-body">
                             
-                        </div>
-                        <!-- END_STATS -->
-
-                        <!--BAR CHART-->
-                        <div class="row ">
-                            <div class="col-xl-10 container-fluid">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Bar Chart Example
+                            <div class="container-fluid">
+                                <div id="list_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                  <div class="row">
+                                    <div class="col text-center">
+                                      <img class="img-fluid img-thumbnail" src="images/icon.png" alt=""> 
+                                      <h5 class="my-2">Username</h5>
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                  </div>
+                                  <div class="my-2">
+                                    <i>Select an image</i>
+                                    <input class="form-control" type="file" id="image" name="image" accept=".jpeg, .jpg, .png">
+                                  </div>
+
+
+                                    <div class="row">
+                                        <div class="col"><h5 class="my-2">Lastname</h5></div>
+                                        <div class="col"><h5 class="my-2">Firstname</h5></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"> 
+                                            <input type="text" class="form-control" name="lastname"> 
+                                        </div>
+                                        <div class="col"> 
+                                            <input type="text" class="form-control" name="firstname"> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col"><h5 class="my-2">Email</h5></div>
+                                      <div class="col"><h5 class="my-2">Contact #</h5></div>
+                                      <div class="col"><h5 class="my-2">Password</h5></div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="col"> 
+                                          <input type="text" class="form-control" name="email"> 
+                                      </div>
+                                      <div class="col"> 
+                                          <input type="text" class="form-control" name="contact"> 
+                                      </div>
+                                      <div class="col"> 
+                                        <input type="password" class="form-control" name="password">
+                                        <label for="" style="font-size: 12px;">Leave this blank if you dont want to change the password.</label> 
+                                    </div>
+                                    <h5 class="my-2">Address</h5>
+                                    <div class="col"> 
+                                    <textarea class="form-control" aria-label="With textarea">Address</textarea>
+                                    </div>
+                                    </div>
+
                                 </div>
                             </div>
+                            <div class="card-footer my-2">
+                                <button type="submit" class="btn btn-primary me-3" name="add-prod-btn">Save</button>
+                                <button type="button" class="btn btn-outline-secondary" name="cancel-prod-btn">Cancel</button>
+                            </div>
+                       
                         </div>
-                        <!--END_BAR CHART-->
-
+                        </form>
+                        </div>
                     </div>
+                </section>
                 </main>
             </div>
             <!-- END_PAGE CONTENT -->

@@ -1,3 +1,6 @@
+<?php
+include('config/user-function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +19,13 @@
 <body id="body">
     <!---- HEADER----->
     <div class="navbar navbar-light" style="background-color: #FFD700;">
-      <div class="container">
-          
-        <div class="col-md-4 col-xs-12 col-sm-4"> 
-          <img src="assets/img/B_logo.png"  width=90px" height="85px">
-        </div>
-        
-        <div class="d-flex flex-row-reverse">
+  <div class="container">
+      
+    <div class="col-md-4 col-xs-12 col-sm-4"> 
+      <img src="assets/img/B_logo.png"  width="90px" height="85px">
+    </div>
+    
+    <div class="d-flex flex-row-reverse">
             <div class="icons">
               <ul class="top-menu text-right d-flex justify-content-center">
                 <li class="dropdown search dropdown-slide">
@@ -34,13 +37,39 @@
                     </li>
                   </ul>
                 </li>
-                <li><a href="cart.html"><i class="fas fa-shopping-cart"></i></a></li>
-                <li><a href="registration.html"><i class="fas fa-user"></i></a> </li>
+                <li>
+                  <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
+                    <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
+                      0</p></i>
+                 
+                  </a> 
+                </li>
+                <?php     
+                    if(isset($_SESSION['user_auth']))
+                    { ?>
+                <li class=" nav-item dropdown"><a class=" dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
+                  <i class="fas fa-user position-relative"></i></a> 
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#!"><?php echo $_SESSION['user']; ?> </a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><a class="dropdown-item" href="config/logout.php">Logout</a></li>
+                  </ul>
+                </li> 
+                <?php 
+                    } else { ?>
+                  <li class=" nav-item dropdown"><a href="login.php" class="dropdown-toggle" id="navbarDropdown" >
+                  <i class="fas fa-user position-relative"></i></a> 
+                  
+                </li> 
+                <?php 
+                    } ?>
+                </li>
               </ul>
             </div>
         </div>
-      </div>
-    </div>
+  </div>
+</div>
+
     <!---- HEADER----->
 
     <!---- NAVBAR----->
@@ -51,18 +80,18 @@
         </button>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="navlink mx-2"><a href="index.html" class="text-light">HOME</a></li>
+            <li class="navlink mx-2"><a href="index.php" class="text-light">HOME</a></li>
             <li class="navlink dropdown dropdown-slide mx-2">
               <a href="#!" class="text-light" >PRODUCTS</a>
               <ul class="dropdown-menu">
-                <li><a href="#!" id="pro">SHIRTS</a></li>
-                <li><a href="product-list-initial/jackets.html" id="pro">JACKETS</a></li>
-                <li><a href="#!" id="pro">TOTE BAGS</a></li>
-                <li><a href="#!" id="pro">OTHERS</a></li>
+                <li><a href="productlist.php?category=All" class="pro">ALL</a></li>
+                <li><a href="productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
+                <li><a href="productlist.php?category=Jacket" class="pro">JACKETS</a></li>
+                <li><a href="productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
+                <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
               </ul>
             </li>
-            <li class="navlink mx-2"><a href="index.html" class="text-light">ABOUT US</a></li>
-            <li class="navlink mx-2"><a href="index.html" class="text-light">CONTACT US</a></li>
+            <li class="navlink mx-2"><a href="about.php" class="text-light">ABOUT US</a></li>
           </ul>
         </div>
       </div>

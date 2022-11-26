@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('config/user-function.php');
 ?>
 <!DOCTYPE html>
@@ -40,7 +39,7 @@ include('config/user-function.php');
                   </ul>
                 </li>
                 <li>
-                  <a href="cart.html"><i class="position-relative fas fa-shopping-cart"> 
+                  <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
                     <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
                       0</p></i>
                  
@@ -96,8 +95,7 @@ include('config/user-function.php');
                 <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
               </ul>
             </li>
-            <li class="navlink mx-2"><a href="about.html" class="text-light">ABOUT US</a></li>
-            <li class="navlink mx-2"><a href="contact.html" class="text-light">CONTACT US</a></li>
+            <li class="navlink mx-2"><a href="about.php" class="text-light">ABOUT US</a></li>
           </ul>
         </div>
       </div>
@@ -193,7 +191,7 @@ include('config/user-function.php');
                   </div>
                 </div>
                 <div class="product-content">
-                  <h4><a href="product-single.html"><?= $item4['product_name'];?></a></h4>
+                  <h4><a href="view-product.php?product_id=<?= $item4['product_id']?>"><?= $item4['product_name'];?></a></h4>
                   <p class="price">Php <?= $item4['price'];?></p>
                 </div>
               </div>

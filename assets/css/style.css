@@ -377,3 +377,49 @@ h1, h2, h3, h4, h5, h6 {
 h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
   }  
+.cart-label{
+  font-weight: 600;
+}
+.side-prof{
+  padding-top: 10px;
+  padding-bottom: 150px;
+  border: #000 solid 1px;
+
+}
+.client-img{
+  width: 120px;
+  border-radius: 50%;
+}
+.media {
+  margin-top: 15px;
+  border: #000 1px solid;
+  padding: 15px;
+}
+.media, .media-body {
+  overflow: hidden;
+  zoom: 1;
+}
+.media-left, .media>.pull-left {
+  padding-right: 10px;
+}
+.pull-left {
+  float: left!important;
+}
+.media-body, .media-left, .media-right {
+  display: table-cell;
+  vertical-align: top;
+}
+.media-body {
+  width: 10000px;
+}
+.str-text{
+  font-weight: 500;
+  font-weight: bold;
+  margin-right: 5px;
+  width: 100px;
+  display: inline-block;
+}
+.divider{
+  margin: 2px 0px;
+}
+

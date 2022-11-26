@@ -107,3 +107,13 @@ label {
 .log-cred{
     width: 300px;
 }
+.img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+    max-width: 100%;
+    width: 120px;
+    height: auto;
+}
