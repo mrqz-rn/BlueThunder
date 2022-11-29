@@ -40,7 +40,15 @@ include('config/user-function.php');
                 <li>
                   <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
                     <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
-                      0</p></i>
+                    <?php 
+                    if(!isset($_SESSION['user'])){
+                      echo "0";
+                    } else {
+                      $numCart = getCartNum("cart_table", $_SESSION['user']);
+                      echo $numCart;
+                    }
+                    ?>     
+                  </p></i>
                  
                   </a> 
                 </li>
@@ -101,16 +109,135 @@ include('config/user-function.php');
 
     <!-- CONTENT-->
     <section class="about section">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+        <div class="container py-4">
+          <div class="row d-dlex align-items-center">
+              <div class="col col-md-6 d-flex justify-content-end">
                     <img class="img-responsive" src="assets/img/about.jpg">
                 </div>
-                <div class="col-md-6">
-                    <h2 class="mt-40">About BlueThunder</h2>
-                    <p>BlueThunder Online Store is a great place to exclusive products from Rizal Technological University. Our store offers a wide variety of products at competitive prices, and it is very convenient to use. The website is easy to navigate and the checkout process is quick and simple. The customer service team is also very helpful and responsive. </p>
+                <div class="col col-md-6">
+                  <h2>About BlueThunder</h2>
+                  <p>BlueThunder Online Store is a great place to exclusive products from Rizal Technological University. Our store offers a wide variety of products at competitive prices, and it is very convenient to use. The website is easy to navigate and the checkout process is quick and simple. The customer service team is also very helpful and responsive. </p>
+                
                 </div>
+ 
             </div>
+
+          <div class="py-4 team4">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-7 text-center">
+                <h2 class="">OUR TEAM</h2>
+              </div>
+            </div>
+
+                <!-- 4 MEMBER  -->
+                <div class="row">
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/ron.jpg"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Ron Marquez</h5>
+                      <h6 class="subtitle mb-3">Team Leader / Developer</h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/icon.png"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Cristal Kaye Sagrit</h5>
+                      <h6 class="subtitle mb-3">Front-End / Back-End</h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/icon.png"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Francheska Denise Raymundo</h5>
+                      <h6 class="subtitle mb-3">Front-End / Analyst </h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/icon.png"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Kim Warren Ompoc</h5>
+                      <h6 class="subtitle mb-3">Front-End</h6>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <!-- 5 MEMBER  -->
+            <div class="row">
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/icon.png"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Erin Jane Marañon</h5>
+                      <h6 class="subtitle mb-3">Database Admin / Documentation</h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/icon.png"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Arvin Lance Caliwag</h5>
+                      <h6 class="subtitle mb-3">Database Admin</h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/icon.png"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Rica Mae Datuin</h5>
+                      <h6 class="subtitle mb-3">Database Admin</h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/mich.jpg"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Michelle Adriene Rabanilla</h5>
+                      <h6 class="subtitle mb-3">Tester / Documentation</h6>
+                    </div>
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="col-md-12 my-2">
+                    <img src="assets/img/icon.png"  class="img-fluid rounded-circle" />
+                  </div>
+                  <div class="col-md-12 text-center">
+                    <div class="">
+                      <h5 class=" font-weight-medium mb-0">Aliah Rose Sumbilla</h5>
+                      <h6 class="subtitle mb-3">Tester / Documentation</h6>
+                    </div>
+                  </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
         </div>
     </section>
 

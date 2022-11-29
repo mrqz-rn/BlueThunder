@@ -57,7 +57,17 @@ include('config/user-function.php');
                 <li>
                   <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
                     <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
-                      0</p></i>
+                    <?php 
+                    if(!isset($_SESSION['user'])){
+                      echo "0";
+                    } else {
+                      $numCart = getCartNum("cart_table", $_SESSION['user']);
+                      if($numCart == 0){
+                        echo "0";
+                      } else { echo $numCart; }   }
+                    ?>   
+                    </p>
+                  </i>
                  
                   </a> 
                 </li>
@@ -121,6 +131,7 @@ include('config/user-function.php');
           if(isset($_GET['product_id']) || isset($_SESSION['view-product'])){
             if(isset($_GET['product_id'])){
               $productID = $_GET['product_id'];
+              $_SESSION['ReviewID'] = $productID;
               $_SESSION['view-product'] = $productID;
             } else {
               $productID = $_SESSION['view-product'];
@@ -168,7 +179,7 @@ include('config/user-function.php');
                     <input type="hidden" name="p_Price" value="<?= $productDATA['price']?>"> 
                     <input id="prodQTY" type="hidden" name="p_QTY">
 
-                    <button type="submit" class="btn btn-primary py-2 px-5 " value="<?= $productDATA['product_id']?>" name="addprodtocart">
+                    <button type="submit" class="btn btn-primary py-2 px-5 thunder-btn" value="<?= $productDATA['product_id']?>" name="addprodtocart">
                       <h5 class="pview-text">ADD TO CART</h5>
                     </button>
                     
@@ -215,20 +226,35 @@ include('config/user-function.php');
         </div>
                    
         <div class="row">
-            <div class="col col-md-8">
-              <div class="card p-4 mb-2 bg-white rounded">  
-                  <i class="fas fa-user-circle fs-4"><label for="" class="px-2"><h6 >username</h6></label></i>          
-                  <p class="text-start" style="font-size: 10px;">01/02/22</p>
-                  <p class="text-start" style="font-size: 15px;">It's nice and </p>
-              </div>
-              <div class="card p-4 mb-2 bg-white rounded">  
-                <i class="fas fa-user-circle fs-4"><label for="" class="px-2"><h6 >username</h6></label></i>          
-                <p class="text-start" style="font-size: 10px;">01/02/22</p>
-                <p class="text-start" style="font-size: 15px;">It's nice and </p>
-              </div>                  
-            </div>
 
-            <div class=" col starcontainer">
+            <div class="col col-md-8">
+            <?php 
+            if(isset($_GET['product_id']) || isset($_SESSION['view-product'])){
+            if(isset($_GET['product_id'])){
+              $productID = $_GET['product_id'];
+              $_SESSION['ReviewID'] = $productID;
+              $_SESSION['view-product'] = $productID;
+            } else {
+              $productID = $_SESSION['view-product'];
+            }
+            $displayReview = getReview("review_table", $productID);
+            $reviewData;
+            if(mysqli_num_rows($displayReview) > 0){
+            foreach($displayReview as $reviewData){ ?>
+
+              <div class="card p-4 mb-2 bg-white rounded">  
+                  <i class="fas fa-user-circle fs-4"><label for="" class="px-2"><h6 ><?=$reviewData['customer_username']?></h6></label></i>          
+                  <p class="text-start" style="font-size: 10px;"><?=$reviewData['datecreated']?></p>
+                  <p class="text-start" style="font-size: 15px;"><?=$reviewData['feedback']?> </p>
+              </div>
+      
+              <?php
+              }
+              }
+              }
+              ?>                  
+            </div>
+            <div class=" starcontainer" height = 400px>
               <div class="starpost">
                   <div class="text">Write a Review</div>
                       <div class="star-widget">
@@ -242,13 +268,13 @@ include('config/user-function.php');
                           <label for="rate-2" class="fas fa-star"></label>
                           <input type="radio" name="rate" id="rate-1">
                           <label for="rate-1" class="fas fa-star"></label>
-                      <form action="#">
-                          <header></header>
+                      <form action="config/user-function.php" method="post" enctype="multipart/form-data">
                           <div class="startextarea">
-                              <textarea cols="30" placeholder="Describe your experience.."></textarea>
+                              <input type="hidden" name="p_ID" value="<?= $productDATA['product_id']?>"> 
+                              <textarea cols="30" placeholder="Describe your experience.." name = "reviewtext"></textarea>
                           </div>
-                          <div class="starbtn">
-                              <button type="submit">Post</button>
+                          <div class="starbtn d-flex justify-content-center">
+                              <button type="submit" name="addReview">Post</button>
                           </div>
                       </form>
               </div>

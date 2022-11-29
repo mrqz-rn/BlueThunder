@@ -1,3 +1,8 @@
+<?php
+include('../config/authentication.php');
+include('../config/authcode.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,21 +12,28 @@
         <title>Blue Thunder</title>
         <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet" />
         <link href="../assets/css/Bootstrap.css" rel="stylesheet" />
+        <!--- ALERTIFY CSS-->
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
         <link rel="stylesheet" href="../assets/css/dash.css">        
     </head>
     <body class="sb-nav-fixed">
         <!-- TOP NAVBAR -->
         <nav class="sb-topnav navbar navbar-expand navbar-dark bgblue">
-            <img src="images/B_logo.png" class="mx-7" width="80px">
+            <img src="../images/B_logo.png" class="mx-7" width="80px">
             
                 <button class=" btn btn-link btn-sm fs-4" id="sidebarToggle" align="right"><i class="fas fa-bars"></i></button>
             <ul class="navbar-nav ms-auto ms-md-auto me-5 me-lg-4">
+                
                 <li class="nav-item dropdown d-md-inline-block ms-auto">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw fs-5"></i> username </a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"><i class="fas fa-user fa-fw fs-5"></i> 
+                    <?php echo $_SESSION['admin']; ?> 
+                    </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Account</a></li>
+                        <li><a class="dropdown-item" href="../account.php">Account</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="../config/logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -40,20 +52,16 @@
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-tachometer-alt" ></i></div>
                                 Overview
                             </a>
-                            <a class="nav-link" href="../sales.html">
-                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-money-check-alt"></i></div>
-                                Sales
-                            </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">MANAGE</div>
-                            <a class="nav-link" href="../users.html" >
+                            <a class="nav-link" href="../users.php" >
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-users" ></i></div>
                                 Users
                             </a>
-                            <a class="nav-link" href="../product/productlist.html">
+                            <a class="nav-link" href="../product/productlist.php">
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-table"></i></div>
                                 Products
                             </a>
-                            <a class="nav-link" href="order.html" style="color: white;">
+                            <a class="nav-link" href="order.php" style="color: white;">
                                 <div class="sb-nav-link-icon fs-6"><i class="fas fa-truck" style="color: white;"></i></div>
                                 Orders
                             </a>
@@ -75,7 +83,7 @@
                     <div class="container-fluid">
                       <div class="card card-outline card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">List of Clients</h3>
+                            <h3 class="card-title">Customer Orders</h3>
                         </div>
                         <div class="card-body">
                             <div class="container-fluid">
@@ -95,60 +103,46 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <table class="table table-hover table-striped dataTable no-footer" >
-                                            <!-- COLUMN TITLES-->
                                                 <thead>
                                                     <tr role="row">
-                                                        <th class="text-center py-1 px-2" style="width: 5%;">#</th>
+                                                        <th class="py-1 px-2" style="width: 15%;">Transaction #</th>
                                                         <th class="py-1 px-2" style="width: 15%;">Date Ordered</th>
-                                                        <th class="py-1 px-2" style="width: 15%;">Customer</th>
-                                                        <th class="py-1 px-2" style="width: 10%;">Total</th>
-                                                        <th class="py-1 px-2 text-center" style="width: 10%;">Payment</th>
+                                                        
+                                                        <th class="py-1 px-2 text-center" style="width: 30%;">Customer</th>
+                                                        <th class="py-1 px-2 text-center" style="width: 10%;">Total</th>
                                                         <th class="py-1 px-2 text-center" style="width: 10%;">Status</th>
                                                         <th class="py-1 px-2 text-center" style="width: 10%;">Action</th>
-                                                        
-                                                        
                                                     </tr>
                                                 </thead>
-                                                <!-- END_COLUMN TITLES-->
 
-                                                <!-- USERS RECORD-->
                                                 <tbody>
+                                                    <?php 
+                                                    $Transactions = getALL("transaction_table");
+                                                    if(mysqli_num_rows($Transactions) > 0){
+                                                        foreach($Transactions as $T_items){ ?>
+                                                              
                                                     <tr class="odd">
-                                                        <td class="text-center py-3 px-2">1</td>
-                                                        <td class="py-3 px-2 data">Marquez</td>
-                                                        <td class="py-3 px-2">Ron</td>
-                                                        <td class="py-3 px-2">ronmrqz</td>
-                                                        <td class="py-3 px-2 text-center">COD</td>
-                                                        <td class="py-3 px-2 text-center">Packed</td>
-                                                        <td class="" align="center" >
-                                                                <a class="nav-link dropdown-toggle " id="navbarDropdown action-b" href="#" role="button" data-bs-toggle="dropdown"> Action </a>
-                                                                <ul class="dropdown-menu dropdown-menu-end">
-                                                                    <li><a class="dropdown-item" href="#!"> <span class="fa fa-edit text-primary"></span> Edit</a></li>
-                                                                    <li><hr class="dropdown-divider" /></li>
-                                                                    <li><a class="dropdown-item" href="#!"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
-                                                                </ul>
-                                                       </td>
-                                                        
-                                                        
-                                                    </tr>  
-                                                    <tr class="even">
-                                                        <td class=" text-center py-3 px-2">1</td>
-                                                        <td class="py-3 px-2">Marquez</td>
-                                                        <td class="py-3 px-2">Ron</td>
-                                                        <td class="py-3 px-2">ronmrqz</td>
-                                                        <td class="py-3 px-2 text-center">COD</td>
-                                                        <td class="py-3 px-2 text-center">Delivered</td>
+                                                        <td class="py-3 px-2"><?=$T_items['transaction_code']?></td>
+                                                        <td class="py-3 px-2 data"><?=$T_items['date_created']?></td>
+                                                        <?php
+                                                        $username = getByUserID($T_items['customer_id']);
+                                                        if(mysqli_num_rows($username) > 0){
+                                                            foreach($username as $customer){ ?>
+                                                        <td class="py-3 px-2 text-center"><?=$customer['firstname']?>  <?=$customer['lastname']?></td>
+                                                        <?php } } ?>
+                                                        <td class="py-3 px-2 text-center"><?=$T_items['total']?></td>
+                                                        <td class="py-3 px-2 text-center "><span class="<?=$T_items['status']?>"><?=$T_items['status']?></span></td>
                                                         <td class="" align="center" >
                                                             <a class="nav-link dropdown-toggle " id="navbarDropdown action-b" href="#" role="button" data-bs-toggle="dropdown"> Action </a>
                                                             <ul class="dropdown-menu dropdown-menu-end">
-                                                                <li><a class="dropdown-item" href="#!"> <span class="fa fa-edit text-primary"></span> Edit</a></li>
+                                                                <li><a class="dropdown-item text-center" href="edit-order.php?transaction_code=<?= $T_items['transaction_code'];?>"><span class="fa fa-edit text-primary"></span> Edit</a></li>
                                                                 <li><hr class="dropdown-divider" /></li>
                                                                 <li><a class="dropdown-item" href="#!"> <span class="fa fa-trash text-danger"></span> Delete</a></li>
                                                             </ul>
-                                                   </td>
-                                                    </tr>  
+                                                       </td>
+                                                    </tr>   
+                                                    <?php } } ?>
                                                 </tbody>
-                                                <!-- END_USERS RECORD-->
                                             </table>
                                         </div>
                                     </div>
@@ -186,9 +180,15 @@
         <!-- LIBRARIES -->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/charts/chart-bar.js"></script>
-        <script src="assets/js/scripts.js"></script>
+        <script src="../assets/js/scripts.js"></script>
+        <!-- ALERTIFY JS -->
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+        <script>
+            <?php if(isset($_SESSION['stat_msg'])){  ?>
+                alertify.set('notifier','position', 'top-right');
+                alertify.success('<?= $_SESSION['stat_msg'];?>');  
+            <?php unset($_SESSION['stat_msg']);   } ?>
+        </script>
 
     </body>
 </html>

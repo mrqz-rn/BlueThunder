@@ -1,3 +1,7 @@
+<?php
+include('../config/user-function.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,9 +38,17 @@
                 </ul>
               </li>
               <li>
-                <a href="cart.html"><i class="position-relative fas fa-shopping-cart"> 
+                <a href="../cart.html"><i class="position-relative fas fa-shopping-cart"> 
                   <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
-                    0</p></i>
+                  <?php 
+                    if(!isset($_SESSION['user'])){
+                      echo "0";
+                    } else {
+                      $numCart = getCartNum("cart_table", $_SESSION['user']);
+                      echo $numCart;
+                    }
+                    ?>     
+                </p></i>
                
                 </a> 
               </li>
@@ -46,14 +58,14 @@
               <li class=" nav-item dropdown"><a class=" dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
                 <i class="fas fa-user position-relative"></i></a> 
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#!"><?php echo $_SESSION['user']; ?> </a></li>
+                      <li><a class="dropdown-item" href="account.php"><?php echo $_SESSION['user']; ?> </a></li>
                       <li><hr class="dropdown-divider" /></li>
-                      <li><a class="dropdown-item" href="config/logout.php">Logout</a></li>
+                      <li><a class="dropdown-item" href="../config/logout.php">Logout</a></li>
                 </ul>
               </li> 
               <?php 
                   } else { ?>
-                <li class=" nav-item dropdown"><a href="login.php" class="dropdown-toggle" id="navbarDropdown" >
+                <li class=" nav-item dropdown"><a href="../login.php" class="dropdown-toggle" id="navbarDropdown" >
                 <i class="fas fa-user position-relative"></i></a> 
                 
               </li> 
@@ -77,19 +89,18 @@
         </button>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="navlink mx-2"><a href="index.php" class="text-light">HOME</a></li>
+            <li class="navlink mx-2"><a href="../index.php" class="text-light">HOME</a></li>
             <li class="navlink dropdown dropdown-slide mx-2">
               <a href="#!" class="text-light" >PRODUCTS</a>
               <ul class="dropdown-menu">
-                <li><a href="productlist.php?category=All" class="pro">ALL</a></li>
-                <li><a href="productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
-                <li><a href="productlist.php?category=Jacket" class="pro">JACKETS</a></li>
-                <li><a href="productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
-                <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
+                <li><a href="../productlist.php?category=All" class="pro">ALL</a></li>
+                <li><a href="../productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
+                <li><a href="../productlist.php?category=Jacket" class="pro">JACKETS</a></li>
+                <li><a href="../productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
+                <li><a href="../productlist.php?category=Other" class="pro">OTHERS</a></li>
               </ul>
             </li>
-            <li class="navlink mx-2"><a href="about.html" class="text-light">ABOUT US</a></li>
-            <li class="navlink mx-2"><a href="contact.html" class="text-light">CONTACT US</a></li>
+            <li class="navlink mx-2"><a href="../about.php" class="text-light">ABOUT US</a></li>
           </ul>
         </div>
       </div>
@@ -99,45 +110,99 @@
 
     <!--  CONTENT-->
     <div class="page-wrapper pt-4">
-      
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2">
-				<nav>
-                    <h5 class="text-center">MY ACCOUNT</h5>
-                    <hr class="divider">
-                    <div class="py-1 text-center bg-gray"><a href=""><label for="">Personal Information</label></a></div>
-                    <div class="py-1 text-center"><a href=""><label for="">Order & Tracking</label></a></div>
-                </nav>
-			</div>
-            <div class="col-md-10">
-                <div class="media">
-                    <div class="pull-left text-center" href="#!">
-                      <img class="media-object client-img" src="../admin/images/icon.png" alt="Image">
-                      <h6>Username</h6>
-                    </div>
-                    <div class="media-body px-4">
-                      <ul class="user-profile-list">
-                        <li>
+      <div class="container">
+        <div class="row">
+          <!--USER ACCOUNT SIDEBAR -->
+          <div class="col-md-2">
+				  <nav>
+              <h5 class="text-center">MY ACCOUNT</h5>
+              <hr class="divider">
+              <div class="py-1 text-center bg-gray"><a href="account.php"><label for="">Personal Information</label></a></div>
+              <div class="py-1 text-center"><a href="ordertrack.php"><label for="">Order & Tracking</label></a></div>
+          </nav>
+			    </div>
+          <div class="col-md-10">
+            <div class="container-fluid pb-4">
+              <div class="card card-outline card-primary">
+                <div class="card-header">
+                    <h5 class="card-title">Account Information</h5>
+                </div>
+
+                <form action="../config/user-function.php" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                    <div class="container-fluid">
+                    <?php
+                    if(isset($_SESSION['user'])){
+                    $user = $_SESSION['user'];
+                    $getUserData = getUser('user_table',$user);
+                    if(mysqli_num_rows($getUserData) > 0){
+                    foreach($getUserData as $UserData){  ?> 
+
+                        <div id="list_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                          <div class="row">
+                            <div class="col text-center">
+                              <img class="img-fluid img-thumbnail client-img" src="../admin/images/user-image/<?=$UserData['image']?>" alt="">
+                              <input type="hidden" name = "old_image" value = "<?=$UserData['image']?>">
+                              <input type="hidden" name = "id" value = "<?=$UserData['id']?>">
+                              <h6 class="my-2"><?=$UserData['username']?></65>
+                            </div>
+                          </div>
+                          <div class="my-2 input-group-sm">
+                            <i style="font-size: 13px;">Select an image to chage your profile</i>
+                            <input class="form-control" type="file" id="image" name="image" accept=".jpeg, .jpg, .png">
+                          </div>
                             <div class="row">
-                                <div class="col">
-                                    <span class="str-text px-2">Lastname:</span> Marquez
+                                <div class="col"><h6 class="my-2">Lastname</h6></div>
+                                <div class="col"><h6 class="my-2">Firstname</h6></div>
+                            </div>
+                            <div class="row">
+                                <div class="col input-group-sm"> 
+                                    <input type="text" class="form-control" name="lastname" value="<?=$UserData['lastname']?>"> 
                                 </div>
-                                <div class="col d-flex justify-content-end">
-                                    <button type="button" class="btn btn-sm btn-outline-dark px-4">Edit</button>
+                                <div class="col input-group-sm"> 
+                                    <input type="text" class="form-control" name="firstname" value="<?=$UserData['firstname']?>"> 
                                 </div>
                             </div>
-                          
-                        </li>
-                        <li class="py-1"><span class="str-text px-2">Firstname:</span>Ron</li>
-                        <li class="py-1"><span class="str-text px-2">Email:</span>ron@gmail.com</li>
-                        <li class="py-1"><span class="str-text px-2">Contact:</span>09878787898</li>
-                        <li class="pt-4"><span class="str-text px-2">Adrress:</span>Antipolo City</li>
-                      </ul>
+                            <div class="row">
+                              <div class="col"><h6 class="my-2">Email</h6></div>
+                              <div class="col"><h6 class="my-2">Contact #</h6></div>
+                              <div class="col"><h6 class="my-2">Password</h6></div>
+                            </div>
+                            <div class="row">
+                              <div class="col input-group-sm"> 
+                                  <input type="text" class="form-control" name="email" value="<?=$UserData['email']?>"> 
+                              </div>
+                              <div class="col input-group-sm"> 
+                                  <input type="text" class="form-control" name="contact" value="<?=$UserData['phone']?>"> 
+                              </div>
+                              <div class="col input-group-sm"> 
+                                <input type="password" class="form-control " name="password">
+                                <label for="" style="font-size: 13px;"><i>Leave this blank if you dont want to change your password.</i> </label> 
+                            </div>
+                            <h6 class="my-2">Address</h6>
+                            <div class="col input-group-sm"> 
+                            <textarea class="form-control" aria-label="With textarea" name = "address"><?=$UserData['address']?></textarea>
+                            </div>
+                            </div>
+
+                        </div>
+
+                        <?php }}} ?>
+
                     </div>
-                  </div>
-                
+                    
+               
+                </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary btn-sm me-3" name="update-account">Update</button>
+                  <a href="account.php"><button type="button" class="btn btn-outline-secondary btn-sm " name="cancel-prod-btn">Cancel</button></a>
+                  
+              </div>
+                </form>
+                </div>
             </div>
+                
+          </div>
 
               
 

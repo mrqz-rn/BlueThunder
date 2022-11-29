@@ -79,8 +79,8 @@ font-weight: bold;
 
 .starcontainer{
   position: relative;
-  width: 300px;
-
+  width: 400px;
+  height: 250px;
   border: 1px solid #444;
   border-radius: 5px;
   display: flex;
@@ -93,7 +93,7 @@ font-weight: bold;
 }
 .starcontainer .text{
   font-size: 20px;
-  color: #666;
+  color: rgb(12, 12, 12);
   font-weight: 500;
   text-align: center;
 }
@@ -178,21 +178,24 @@ form .textarea textarea{
 }
 form .starbtn{
   height: 45px;
-  width: 75%;
-  margin: 15px;
+  width: 100%;
 }
 form .starbtn button{
   height: 75%;
   width: 75%;
-  border: 1px solid #444;
+  border: none;
   outline: none;
-  background: #222;
-  color: #999;
+  background: #00256c;
+  color: rgb(255, 255, 255);
   font-size: 15px;
   font-weight: 500;
   text-transform: uppercase;
   cursor: pointer;
   text-align: center;
+}
+.starbtn :hover{
+  background: #004fe0;
+  transition: .4s;
 }
 .review{
   font-size: 2rem;
@@ -214,4 +217,9 @@ form .starbtn button{
 }
 .view-image{
   border: 1px solid black;
+}
+.thunder-btn{
+  background: #00256c;
+  border: #00256c;
+  border-radius: 0px;
 }

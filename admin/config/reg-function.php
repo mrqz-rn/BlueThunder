@@ -1,7 +1,6 @@
 <?php
 
-    session_start();
-    include('databasecon.php');
+include('databasecon.php');
 
     // DATA FROM USER INPUTS
     $lastname = $_POST["firstname"];

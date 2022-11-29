@@ -1,9 +1,5 @@
 <?php 
-
 include('databasecon.php');
-
-
-
 // Product Add-Function
 if(isset($_POST['add-prod-btn'])){
     $name = $_POST['productname'];
@@ -78,6 +74,7 @@ if(isset($_POST['edit-prod-btn'])){
     }
 }
 
+/// Product Delete
 if(isset($_POST['del-prod-btn'])){
     echo "deleting";
 
@@ -93,10 +90,62 @@ if(isset($_POST['del-prod-btn'])){
         header('Location: ../product/productlist.php');
         exit();
     }
-
-} else {
-    echo "there is an error";
 }
 
+/// UPDATE ORDER STATUS
+if(isset($_POST['updateORDER'])){
+    $newStat = $_POST['or_status'];
+    $transactionID = $_POST['transac_id'];
+    
+     $updateStat = "UPDATE transaction_table SET status = '$newStat' WHERE transaction_code = '$transactionID'";
+     $updateStat_run = mysqli_query($con, $updateStat);
+     if($updateStat_run){
+        $_SESSION['stat_msg'] = "Order status has been updated";
+        header('Location: ../orders/order.php');
+        exit();
+     }
+}
 
+// UPDATE USER DETAILS
+if(isset($_POST['update-account'])){
+    $user_id = $_POST['id'];
+    $lastname = $_POST['lastname'];
+    $firstname = $_POST['firstname'];
+    $email = $_POST['email'];
+    $contact = $_POST['contact'];
+    $address = $_POST['address'];
+    $password = $_POST['password'];
+    $old_image = $_POST['old_image'];
+    $new_image = $_FILES['image']['name'];
+    $path = "../images/user-image/";
+    $image_ext = pathinfo($new_image, PATHINFO_EXTENSION);
+    $filename = time().'.'.$image_ext;
+
+    if($new_image != null){
+        $update_filename = $new_image;
+    } else {
+        $update_filename = $old_image;
+    }
+    if($password != null){
+        $edit_prod_sql = "UPDATE user_table SET lastname = '$lastname',firstname= '$firstname',email= '$email',
+                        phone= '$contact',address= '$address', image = '$update_filename', password = '$password' WHERE id = '$user_id'";
+    } else {
+        $edit_prod_sql = "UPDATE user_table SET lastname = '$lastname',firstname= '$firstname',email= '$email',
+                        phone= '$contact',address= '$address', image = '$update_filename' WHERE id = '$user_id'";
+    }
+    $edit_prod_sql_run = mysqli_query($con, $edit_prod_sql);
+
+    if($edit_prod_sql_run){
+        if($_FILES['image']['name'] != ""){
+            move_uploaded_file($_FILES['image']['tmp_name'] , $path.'/'.$new_image);
+        } 
+        $_SESSION['edit_msg'] = "Account updated successfully";
+        header('Location: ../account.php');
+        exit();
+    } else {
+        $_SESSION['edit_msg'] = "There is an error";
+        header('Location: ../account.php');
+        exit();
+    }
+}
 ?>

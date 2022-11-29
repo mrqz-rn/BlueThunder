@@ -1,6 +1,8 @@
 <?php
-include('config/user-function.php');
+include('../config/user-function.php');
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +12,8 @@ include('config/user-function.php');
     <title>Blue Thunder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-    <!-- ALERTIFY CSS  -->
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" href="assets/img/icon.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" href="../assets/img/icon.png">
 </head>
 
 
@@ -25,7 +23,7 @@ include('config/user-function.php');
       <div class="container">
           
         <div class="col-md-4 col-xs-12 col-sm-4"> 
-          <img src="assets/img/B_logo.png"  width=90px" height="85px">
+          <img src="../assets/img/B_logo.png"  width=90px" height="85px">
         </div>
         
         <div class="d-flex flex-row-reverse">
@@ -41,20 +39,9 @@ include('config/user-function.php');
                 </ul>
               </li>
               <li>
-                <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
+                <a href="cart.html"><i class="position-relative fas fa-shopping-cart"> 
                   <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
-                  <?php 
-                    if(!isset($_SESSION['user'])){
-                      $numCart = 0;
-                      echo $numCart;
-                    } else {
-                      $numCart = getCartNum("cart_table", $_SESSION['user']);
-                      if($numCart == 0){
-                        $numCart = 0;
-                        echo $numCart;
-                      } else { echo $numCart; }   }
-                    ?>   
-                    </p></i>
+                    0</p></i>
                
                 </a> 
               </li>
@@ -81,7 +68,8 @@ include('config/user-function.php');
             </ul>
           </div>
       </div>
-      
+
+
       </div>
     </div>
     <!---- HEADER----->
@@ -98,14 +86,14 @@ include('config/user-function.php');
             <li class="navlink dropdown dropdown-slide mx-2">
               <a href="#!" class="text-light" >PRODUCTS</a>
               <ul class="dropdown-menu">
-                <li><a href="productlist.php?category=All" class="pro">ALL</a></li>
-                <li><a href="productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
-                <li><a href="productlist.php?category=Jacket" class="pro">JACKETS</a></li>
-                <li><a href="productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
-                <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
+                <li><a href="../productlist.php?category=All" class="pro">ALL</a></li>
+                <li><a href="../productlist.php?category=Shirt" class="pro">SHIRTS</a></li>
+                <li><a href="../productlist.php?category=Jacket" class="pro">JACKETS</a></li>
+                <li><a href="../productlist.php?category=Bag" class="pro">TOTE BAGS</a></li>
+                <li><a href="../productlist.php?category=Other" class="pro">OTHERS</a></li>
               </ul>
             </li>
-            <li class="navlink mx-2"><a href="about.php" class="text-light">ABOUT US</a></li>
+            <li class="navlink mx-2"><a href="../about.php" class="text-light">ABOUT US</a></li>
           </ul>
         </div>
       </div>
@@ -114,100 +102,73 @@ include('config/user-function.php');
 
 
     <!--  CONTENT-->
-    <div class="page-wrapper p-4">
+    <div class="page-wrapper py-4">
       
-        <div class="container bg-gray p-4">
+        <div class="container">
           <div class="row">
-            <div class="col col-md-12">
+            <div class="col-md-2">
+				<nav>
+                    <h5 class="text-center">MY ACCOUNT</h5>
+                    <hr class="divider">
+                    <div class="py-1 text-center "><a href="account.php"><label for="">Personal Information</label></a></div>
+                    <div class="py-1 text-center bg-gray"><a href="ordertrack.php"><label for="">Order & Tracking</label></a></div>
+                </nav>
+			</div>
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="container-fluid">
+                        <div id="list_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                            
+             
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h5 class="pt-2">Orders</h5>
+                                    <hr class="divider">
+                                    <table class="table table-hover table-striped dataTable no-footer" >
+                                    <!-- COLUMN TITLES-->
+                                        <thead>
+                                            <tr role="row">
+                                                
+                                                <th class="py-1 px-2 text-center" style="width: 5%;">#</th>
+                                                <th class="py-1 px-2 text-center" style="width: 15%;">Date/Time</th>
+                                                <th class="py-1 px-2 text-center" style="width: 25%;">Order #</th>
+                                                <th class="py-1 px-2 text-center" style="width: 15%;">Total Amount</th>
+                                                <th class="py-1 px-2 text-center" style="width: 20%;">Order Status</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <!-- END_COLUMN TITLES-->
 
-                <div class="product-list">
-  
-                    <table class="table">
-                      <h5 class="cart-label">SHOPPING CART</h5>
-                      
-                      <thead>
-                        <tr role="row">
-                          <th class="text-center py-1 px-2" style="width: 50%;"></th>
-                          <th class="py-1 px-2" style="width: 18%;"></th>
-                          <th class="py-1 px-2" style="width: 18%;"></th>
-                          <th class="py-1 px-2" style="width: 14%;"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                      <?php 
-                      global $grandTotal;
-                      if(isset($_SESSION['user'])){
-                      $client = $_SESSION['user'];
-                      
-                      $displayCART = getCart("cart_table", $client);
-                      if(mysqli_num_rows($displayCART) > 0){
-                        foreach($displayCART as $cartDATA){ 
-                        ?>
-                        <tr class="align-middle">
-                          <td class="">
-                          <form action="config/user-function.php" method = "post">
-                            <div class="product-info col">
-
-                              <label for="" class="px-2">
-                                <input type="hidden" name = "cart_item" value = "<?=$cartDATA['cart_id']?>">
-                                <button type="submit" class="btn btn-sm btn-outline-danger" name = "del-cart-item"><i class="fas fa-trash"></i></button>
-                              </label>
- 
-                              <?php 
-                              $displayPName = getProduct("product_table",$cartDATA['product_id']);
-                              if(mysqli_num_rows($displayPName) > 0){
-                                foreach($displayPName as $Pname){ ?>
-                                <img width="150px" src="admin/images/product-image/<?= $Pname['image']?>" alt=""/>
-                                <label for="" class="cart-label"><?= $Pname['product_name']?></label>
-                              <?php
-                              }
-                              }
-                              ?>
-                                
+                                        <!-- USERS RECORD-->
+                                        <tbody>
+                                            <tr class="odd">
+                                                
+                                                <td class="py-2 px-2 ">Product Name</td>
+                                                <td class="py-2 px-2 text-center">L</td>
+                                                <td class="py-2 px-2 text-center">2</td>
+                                                <td class="py-2 px-2 text-center">200</td>
+                                                <td class="py-2 px-2 text-center">400</td>
+                                                
+                                                
+                                                
+                                            </tr>  
+                                             
+                                        </tbody>
+                                        <!-- END_USERS RECORD-->
+                                        
+                                    </table>
+                                </div>
                             </div>
-                            </form>
-                          </td>
-                          <td class="text-center"><b>Price: </b> <?= $cartDATA['price']?> </td>
-                          <td class="text-center"><label for=""><b>QTY: </b><?= $cartDATA['quantity']?></label></td>
-                          <td class="text-center">₱ <?=$cartDATA['subtotal']?></td>
-                        </tr>
-                        
-                        <?php  
-                          $grandTotal += $cartDATA['subtotal'];
-                          }
-                          } 
-                          } ?> 
-
-                      </tbody>
-                      <tfoot>
-                        <tr>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th class="text-center">
-                            <label for="" class="align-middle">Grand Total: </label>
-                            <span class="fs-5 align-middle"><?= $grandTotal;?></span>
-                          </th>
-                          
-                        </tr>
-                      </tfoot>
-
-                    </table>
-                    <div class="d-flex justify-content-end">
-                      <?php
-                      if($numCart != 0){ ?>
-                         <a href="checkout.php"><button class="btn btn-primary px-5 thunder-btn" type="submit" width="200px">CHECKOUT</button></a>
-                      <?php } else { ?>
-                        <a href="productlist.php?category=All"><button class="btn btn-outline-primary px-5" type="submit" width="200px">SHOP NOW</button></a>
-                      <?php } ?>
-                      
-                     
+                            
+                        </div>
                     </div>
-                  
                 </div>
+                
+            </div>
+
               
 
-            </div>
+            
           </div>
         </div>
       
@@ -284,14 +245,6 @@ include('config/user-function.php');
 <!-------------------     FOOTER  ---------------------->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
-    <!---- ALERTIFY JS---->
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-    <script>
-        <?php if(isset($_SESSION['cart-msg'])){  ?>
-        alertify.set('notifier','position', 'top-right');
-        alertify.success('<?=$_SESSION['cart-msg']?>'); 
-        <?php unset($_SESSION['cart-msg']);   } ?> 
-    </script>
   </body>
 
 

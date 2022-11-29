@@ -10,6 +10,10 @@ include('config/user-function.php');
     <title>Blue Thunder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- ALERTIFY CSS  -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/productlist.css">
     <link rel="icon" href="assets/img/icon.png">
@@ -54,7 +58,16 @@ include('config/user-function.php');
                 <li>
                   <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
                     <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
-                      0</p></i>
+                    <?php 
+                    if(!isset($_SESSION['user'])){
+                      echo "0";
+                    } else {
+                      $numCart = getCartNum("cart_table", $_SESSION['user']);
+                      if($numCart == 0){
+                        echo "0";
+                      } else { echo $numCart; }   }
+                    ?>  
+                    </p></i>
                  
                   </a> 
                 </li>
@@ -137,6 +150,7 @@ include('config/user-function.php');
         <?php 
          $prodCATEGORY;
          if(isset($_GET['category'])){
+          $_SESSION['CATEGORY'] =  $_GET['category'];
           $productCAT = $_GET['category'];
           echo $productCAT;
          }
@@ -157,8 +171,13 @@ include('config/user-function.php');
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
         
         <?php 
-          if(isset($_GET['category'])){
-          $productCAT = $_GET['category'];
+          if(isset($_GET['category']) || $_SESSION['CATEGORY'] ){
+            if(isset($_GET['category'])){
+              $productCAT = $_GET['category'];
+            } else if($_SESSION['CATEGORY'] ){
+              $productCAT = $_SESSION['CATEGORY'];
+            }
+          
           $displayCAT = getProductCat("product_table", $productCAT);
           $productDATA;
           if(mysqli_num_rows($displayCAT) > 0){
@@ -169,11 +188,20 @@ include('config/user-function.php');
             <a href="view-product.php?product_id=<?= $productDATA['product_id']?>"><center><img src="admin/images/product-image/<?= $productDATA['image']?>" width="200" height="250" ></center> </a>
             <div class="card-body">
               <a href="view-product.php?product_id=<?= $productDATA['product_id']?>"><p class="card-text"><?= $productDATA['product_name']?></p></a>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary" align = "center">Add to Cart</button>
+              <div class=" align-items-center">
+                <form action="config/user-function.php" method="post" enctype="multipart/form-data">
+              <?php
+                  if(isset($_SESSION['user'])){ ?>
+                  <input type="hidden" name="client" value="<?= $_SESSION['user'];?>"> 
+            <?php } else { 
+                  $userNOTIF = "Please login first!";
+                  } ?> 
+                <div class="d-flex justify-content-between">
+                  <span>Php <?= $productDATA['price']?></span>
+                  <span> <?= $productDATA['sold']?> Sold</span>
                 </div>
-                <small class="text-muted1">Php <?= $productDATA['price']?></small>
+                </form>
+                
               </div>
             </div>
           </div>
@@ -263,6 +291,20 @@ include('config/user-function.php');
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
+    <!---- ALERTIFY JS---->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+          <?php if(isset($_SESSION['cart_message'])){  ?>
+          alertify.set('notifier','position', 'top-right');
+          alertify.success('<?=$_SESSION['cart_message']?>'); 
+          <?php unset($_SESSION['cart_message']);   } ?> 
+
+
+          <?php if(isset($_SESSION['userNOTIF'])){  ?>
+            alertify.alert(' <?= $_SESSION['userNOTIF']?> ').set('basic', true); 
+          <?php unset($_SESSION['userNOTIF']);   } ?> 
+      </script>
+  
   </body>
 
 

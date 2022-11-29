@@ -1,3 +1,6 @@
+<?php
+include('config/user-function.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +10,12 @@
     <title>Blue Thunder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="icon" href="../assets/img/icon.png">
+    <!-- ALERTIFY CSS  -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="assets/img/icon.png">
 </head>
 
 
@@ -18,7 +25,7 @@
       <div class="container">
           
         <div class="col-md-4 col-xs-12 col-sm-4"> 
-          <img src="../assets/img/B_logo.png"  width=90px" height="85px">
+          <img src="assets/img/B_logo.png"  width=90px" height="85px">
         </div>
         
         <div class="d-flex flex-row-reverse">
@@ -34,9 +41,18 @@
                 </ul>
               </li>
               <li>
-                <a href="cart.html"><i class="position-relative fas fa-shopping-cart"> 
+                <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
                   <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
-                    0</p></i>
+                  <?php 
+                    if(!isset($_SESSION['user'])){
+                      echo "0";
+                    } else {
+                      $numCart = getCartNum("cart_table", $_SESSION['user']);
+                      if($numCart == 0){
+                        echo "0";
+                      } else { echo $numCart; }   }
+                    ?>  
+                    </p></i>
                
                 </a> 
               </li>
@@ -63,8 +79,7 @@
             </ul>
           </div>
       </div>
-
-
+      
       </div>
     </div>
     <!---- HEADER----->
@@ -88,8 +103,7 @@
                 <li><a href="productlist.php?category=Other" class="pro">OTHERS</a></li>
               </ul>
             </li>
-            <li class="navlink mx-2"><a href="about.html" class="text-light">ABOUT US</a></li>
-            <li class="navlink mx-2"><a href="contact.html" class="text-light">CONTACT US</a></li>
+            <li class="navlink mx-2"><a href="about.php" class="text-light">ABOUT US</a></li>
           </ul>
         </div>
       </div>
@@ -98,76 +112,100 @@
 
 
     <!--  CONTENT-->
-    <div class="page-wrapper py-4">
-      
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2">
-				<nav>
-                    <h5 class="text-center">MY ACCOUNT</h5>
-                    <hr class="divider">
-                    <div class="py-1 text-center bg-gray"><a href=""><label for="">Personal Information</label></a></div>
-                    <div class="py-1 text-center"><a href=""><label for="">Order & Tracking</label></a></div>
-                </nav>
-			</div>
-            <div class="col-md-10">
-                <div class="card">
-                    <div class="container-fluid">
-                        <div id="list_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                            
-             
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <h5 class="pt-2">Orders</h5>
-                                    <hr class="divider">
-                                    <table class="table table-hover table-striped dataTable no-footer" >
-                                    <!-- COLUMN TITLES-->
-                                        <thead>
-                                            <tr role="row">
-                                                
-                                                <th class="py-1 px-2 text-center" style="width: 5%;">#</th>
-                                                <th class="py-1 px-2 text-center" style="width: 15%;">Date/Time</th>
-                                                <th class="py-1 px-2 text-center" style="width: 25%;">Order #</th>
-                                                <th class="py-1 px-2 text-center" style="width: 15%;">Total Amount</th>
-                                                <th class="py-1 px-2 text-center" style="width: 20%;">Order Status</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <!-- END_COLUMN TITLES-->
-
-                                        <!-- USERS RECORD-->
-                                        <tbody>
-                                            <tr class="odd">
-                                                
-                                                <td class="py-2 px-2 ">Product Name</td>
-                                                <td class="py-2 px-2 text-center">L</td>
-                                                <td class="py-2 px-2 text-center">2</td>
-                                                <td class="py-2 px-2 text-center">200</td>
-                                                <td class="py-2 px-2 text-center">400</td>
-                                                
-                                                
-                                                
-                                            </tr>  
-                                             
-                                        </tbody>
-                                        <!-- END_USERS RECORD-->
-                                        
-                                    </table>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                
+    <div class="page-wrapper p-4">
+      <form action="config/user-function.php" method="post">
+        <div class="container bg-gray p-4">
+          <div class="col hr1 pb-2">
+            <img src="assets/img/icon.png" alt="" class="checklogo">
+            <label for=""><h5>BLUETHUNDER | Checkout</h5></label>
+          </div>
+          <div class="row p-2 "> 
+            <div class="col d-data">
+              <?php
+              if(isset($_SESSION['user'])){
+              $user = $_SESSION['user'];
+              $getUserData = getUser('user_table',$user);
+              if(mysqli_num_rows($getUserData) > 0){
+              foreach($getUserData as $UserData){  ?> 
+              <h5 class="pb-2">
+              <i class="fas fa-map-marker-alt fs-5 me-2"></i>Delivery Details 
+              <a href="user/edit-account.php"class="float-end clink"><span style="font-size:15px;">Change</span></a>
+              </h5>
+              <h6 class="px-2">Customer Name: <span class="deliver_info"><?=$UserData['firstname']?>  <?=$UserData['lastname']?></span></h6>
+              <h6 class="px-2">Contact: <span class="deliver_info"><?=$UserData['phone']?></span></h6>
+              <h6 class="px-2">Address: <span class="deliver_info"><?=$UserData['address']?></span></h6>
+              <input type="hidden" name="c_id" value="<?=$UserData['id']?>">
+              <input type="hidden" name="c_phone" value="<?=$UserData['phone']?>">
+              <input type="hidden" name="c_address" value="<?=$UserData['address']?>">
+              <?php
+                    }
+                    }
+                    } ?>
+                    
             </div>
+          </div>
+          <h5 class="py-2">Products Ordered</h5>
+          <table class="table col">
+          <?php 
+              global $grandTotal;
+              if(isset($_SESSION['user'])){
+              $client = $_SESSION['user'];        
+              $displayCART = getCart("cart_table", $client);
+              if(mysqli_num_rows($displayCART) > 0){
+              foreach($displayCART as $cartDATA){  ?>
 
-              
+              <tr class="align-middle">
+                <?php 
+                $displayPName = getProduct("product_table",$cartDATA['product_id']);
+                if(mysqli_num_rows($displayPName) > 0){
+                foreach($displayPName as $Pname){  ?>
+                <td style="width: 50%;" class="px-5">
+                  <img src="admin/images/product-image/<?= $Pname['image']?>" class="orderedimg">
+                  <label class="mx-2"><?= $Pname['product_name']?></label>
+                </td>
+                <?php }} ?>
+                <td style="width: 20%;"> <?= $cartDATA['price']?> </td>
+                <td style="width: 20%;"> <?= $cartDATA['quantity']?> </td>
+                <td style="width: 10%;"> <?= $cartDATA['subtotal']?> </td>
+              </tr>
+              <?php $grandTotal += $cartDATA['subtotal']; }}} ?>
+              <input type="hidden" value = "<?=$grandTotal?>" name = "order_total">
+          </table>
+          <div class="row">
+            <div class="payment col d-flex justify-content-start">
+              <div class="px-1">
+              <input type="radio" class="btn-check" name="payment_op"  autocomplete="off" checked value = "COD">
+              <label class="btn btn-primary" for="option1">Cash on Delivery</label>
+              </div>
+              <div class="px-1">
+              <input type="radio" class="btn-check" name="payment_op"  autocomplete="off" disabled>
+              <label class="btn btn-outline-secondary" for="option3">Online Payment / e-Wallet</label>
+              </div>
+              <div class="px-1">
+              <input type="radio" class="btn-check" name="payment_op"  autocomplete="off" disabled>
+              <label class="btn btn-outline-secondary" for="option3">Online Bank </label>
+              </div>
 
-            
+            </div>
+            <div class="col d-flex justify-content-end">
+            <div class="px-3">
+              <select class="form-select form-select-sm" name = "c_courier">
+                <option selected value="">Select Courier</option>
+                <option value="J&T">J&T Exprees</option>
+                <option value="JRS">JRS Express</option>
+                <option value="NV">Ninja Van</option>
+                <option value="2GO">2GO</option>
+              </select>
+              </div>
+              <h6 class="pt-1">Order Total <span style="font-size: 13px;">(<?= $numCart;?> items)</span> : <b><?= $grandTotal;?></b> </h6>
+            </div>
+          </div>
+
+          <div class=" d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary checkout-btn" name = "confirm-order">CONFIRM ORDER</button>
           </div>
         </div>
-      
+      </form>
     </div>
 
 
@@ -241,6 +279,16 @@
 <!-------------------     FOOTER  ---------------------->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
+    <!---- ALERTIFY JS---->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+      <?php
+      if( isset($_SESSION['check-msg']) ) { ?>
+        alertify.error('<?=$_SESSION['check-msg']?>'); 
+      <?php }
+      unset($_SESSION['check-msg']); ?>
+    </script>
+  
   </body>
 
 

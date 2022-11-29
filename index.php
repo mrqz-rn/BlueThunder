@@ -12,6 +12,10 @@ include('config/user-function.php');
     -->
     <link rel="stylesheet" href="assets/css/Bootstrap.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <!-- ALERTIFY CSS  -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+    
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="assets/img/icon.png">
 </head>
@@ -41,7 +45,16 @@ include('config/user-function.php');
                 <li>
                   <a href="cart.php"><i class="position-relative fas fa-shopping-cart"> 
                     <p class="position-absolute top-0 end-0 bg-primary text-light" style="margin-right: -5px; padding:2px 4px; border-radius:4px;">
-                      0</p></i>
+                    <?php 
+                    if(!isset($_SESSION['user'])){
+                      echo "0";
+                    } else {
+                      $numCart = getCartNum("cart_table", $_SESSION['user']);
+                      if($numCart == 0){
+                        echo "0";
+                      } else { echo $numCart; }   }
+                    ?>  
+                    </p></i>
                  
                   </a> 
                 </li>
@@ -51,7 +64,7 @@ include('config/user-function.php');
                 <li class=" nav-item dropdown"><a class=" dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown">
                   <i class="fas fa-user position-relative"></i></a> 
                   <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!"><?php echo $_SESSION['user']; ?> </a></li>
+                        <li><a class="dropdown-item" href="user/account.php"><?php echo $_SESSION['user']; ?> </a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="config/logout.php">Logout</a></li>
                   </ul>
@@ -277,6 +290,14 @@ include('config/user-function.php');
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script> 
     <script src="assets/js/jquery-3.6.1.js"></script>
+    <!---- ALERTIFY JS---->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+        <?php if(isset($_SESSION['check-msg'])){  ?>
+        alertify.set('notifier','position', 'top-right');
+        alertify.success('<?=$_SESSION['check-msg']?>'); 
+        <?php unset($_SESSION['check-msg']);   } ?> 
+    </script>
   </body>
 
 

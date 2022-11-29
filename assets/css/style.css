@@ -388,12 +388,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 .client-img{
   width: 120px;
+  height: 120px;
   border-radius: 50%;
+  object-fit: cover;
 }
 .media {
-  margin-top: 15px;
-  border: #000 1px solid;
+  border: rgb(99, 98, 98) 1px solid;
+  border-radius: 5px;
   padding: 15px;
+  margin-bottom: 20px;
 }
 .media, .media-body {
   overflow: hidden;
@@ -422,4 +425,57 @@ h1, h2, h3, h4, h5, h6 {
 .divider{
   margin: 2px 0px;
 }
+.img-thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+  max-width: 100%;
+  width: 120px;
+  height: auto;
+}
+.checklogo{
+  width: 50px;
+}
+.deliver_info{
+  font-weight: 500;
+}
+.hr1{
+  border-bottom: #000 .5px solid;
+}
+.clink{
+  color: rgb(0, 89, 255);
+}
+.orderedimg{
+  width: 70px;
+  height: 80px;
+}
+.checkout-btn{
+  border-radius: 0;
+  background-color: #00256c;
+  border: none;
+  width: 170px;
+}
+.thunder-btn{
+  background: #00256c;
+  border: #00256c;
+  border-radius: 0px;
+}
+.team4 {
+  font-family: "Poppins", sans-serif;
+	color: #8d97ad;
+  font-weight: 300;
+}
+.team4 h1, .team4 h2, .team4 h3, .team4 h4, .team4 h5, .team4 h6 {
+  color: #1f2229;
+}
+.team4 .font-weight-medium {
+	font-weight: 500;
+}
+.team4 h5 {
+  line-height: 22px;
+  font-size: 18px;
+}
+
 

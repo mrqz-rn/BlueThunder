@@ -1,8 +1,6 @@
-<?php    
-session_start();
-if(isset($_SESSION['auth'])){
-    
-} else {
-    echo "<script>window.location.href='login.php';</script>";
+<?php 
+include('databasecon.php');
+if(!isset($_SESSION['auth'])){
+    header('Location: login.php');
 }
 ?>

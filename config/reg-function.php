@@ -1,6 +1,4 @@
 <?php
-
-    session_start();
     include('databasecon.php');
 
 
@@ -13,7 +11,7 @@
     $password = ($_POST["password"]);
     $conpswd = ($_POST["conpswd"]);
 
-// Contatenate for Address_variable
+// Concatenate for Address_variable
     $contact = ($_POST["contact"]);
     $houseNo = ($_POST["houseNo"]);
     $baranggay = ($_POST["baranggay"]);
@@ -22,7 +20,6 @@
     $region = ($_POST["region"]);
     $postal = ($_POST["postal"]);
     $address = $houseNo .", ". $baranggay .", ". $city .", ". $province.", ". $region .", ". $postal;
-
 
 // CHECKING OF REQUIRED FIELDS
     if(empty($lastname)){
@@ -103,6 +100,8 @@
             if($result_add){
                 header("Location: ../index.php");
                 $_SESSION['log_message'] = "Your account has been created successfully.";
+                $_SESSION['user'] = $username;
+                $_SESSION['user_auth'] = true;
 	            exit();
             }
         }

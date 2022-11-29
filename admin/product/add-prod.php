@@ -29,9 +29,9 @@ include('../config/authentication.php');
                 <li class="nav-item dropdown d-md-inline-block ms-auto">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw fs-5"></i> username </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Account</a></li>
+                        <li><a class="dropdown-item" href="../account.php">Account</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="../config/logout.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -50,10 +50,6 @@ include('../config/authentication.php');
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-tachometer-alt" ></i></div>
                                 Overview
                             </a>
-                            <a class="nav-link" href="../sales.html" >
-                                <div class="sb-nav-link-icon fs-5"><i class="fas fa-money-check-alt"></i></div>
-                                Sales
-                            </a>
                             <div class="sb-sidenav-menu-heading bg_dblue">MANAGE</div>
                             <a class="nav-link" href="../users.php" >
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-users"></i></div>
@@ -63,7 +59,7 @@ include('../config/authentication.php');
                                 <div class="sb-nav-link-icon fs-5"><i class="fas fa-table" style="color: white;"></i></div>
                                 Products
                             </a>
-                            <a class="nav-link" href="../orders/order.html" >
+                            <a class="nav-link" href="../orders/order.php" >
                                 <div class="sb-nav-link-icon fs-6"><i class="fas fa-truck"></i></div>
                                 Orders
                             </a>
@@ -158,7 +154,6 @@ include('../config/authentication.php');
         <!-- LIBRARIES -->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="../assets/js/scripts.js"></script>
         
         <!-- ALERTIFY JS -->
